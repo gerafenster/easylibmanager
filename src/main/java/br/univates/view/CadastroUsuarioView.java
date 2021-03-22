@@ -44,7 +44,7 @@ public class CadastroUsuarioView extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPaneLogin = new javax.swing.JTextPane();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Cadastrar Usuário");
 

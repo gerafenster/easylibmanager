@@ -7,7 +7,6 @@ br/univates/model/Editora.class
 br/univates/view/CadastroUsuarioView$2.class
 br/univates/model/Usuario.class
 br/univates/view/CadastroClienteView.class
-br/univates/view/MenuView$5.class
 br/univates/model/Emprestimo.class
 br/univates/view/MenuView$1.class
 br/univates/view/LoginView$1.class

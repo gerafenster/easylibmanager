@@ -42,7 +42,7 @@ public class CadastroLivroView extends javax.swing.JFrame
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("ISBN");
 
@@ -145,6 +145,7 @@ public class CadastroLivroView extends javax.swing.JFrame
         {
             controller.salvarLivro();
             JOptionPane.showMessageDialog(null, "Livro salvo com sucesso!");
+            dispose();
         }
         else
         {

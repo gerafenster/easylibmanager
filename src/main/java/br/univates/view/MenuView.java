@@ -25,7 +25,6 @@ public class MenuView extends javax.swing.JFrame
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButtonTestarUsuarioDao = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -50,15 +49,6 @@ public class MenuView extends javax.swing.JFrame
         jButton3.setText("Registrar Devolução");
 
         jButton4.setText("Pesquisar Livro");
-
-        jButtonTestarUsuarioDao.setText("Testar UsuarioDao");
-        jButtonTestarUsuarioDao.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButtonTestarUsuarioDaoActionPerformed(evt);
-            }
-        });
 
         jMenu1.setText("Arquivo");
 
@@ -142,17 +132,11 @@ public class MenuView extends javax.swing.JFrame
                         .addGap(66, 66, 66)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(61, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonTestarUsuarioDao, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(231, 231, 231))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jButtonTestarUsuarioDao, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addContainerGap(220, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -170,36 +154,6 @@ public class MenuView extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonTestarUsuarioDaoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonTestarUsuarioDaoActionPerformed
-    {//GEN-HEADEREND:event_jButtonTestarUsuarioDaoActionPerformed
-//        Connection conexao;
-//        try {
-//            conexao = new Conexao().getConnection();
-//
-//            UsuarioDao usuarioDao = new UsuarioDao(conexao);
-//
-//      INSERT (nome, sobrenome, login, senha, cpf) 
-//            Usuario usuarioInsert = new Usuario("Didi", "Mocó", "volhi.raba",
-//                    "6969", 70869);
-//            Usuario usuarioInserido = usuarioDao.insert(usuarioInsert);
-//      SELECT id ()      
-//            Usuario usuarioSelecionado = usuarioDao.selectPorId(usuarioInserido);
-//            System.out.println(usuarioSelecionado.getId());
-//      DELETE
-//            usuarioDao.delete(usuarioSelecionado);
-//      SELECT ALL
-//            ArrayList<Usuario> usuarios = usuarioDao.selectAll();
-//            for (Usuario usuario : usuarios) {
-//                System.out.println(usuario.getLogin());
-//            }
-//      FIM DOS TESTES
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MenuView.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
-    }//GEN-LAST:event_jButtonTestarUsuarioDaoActionPerformed
-
     private void jMenuItemCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastraUsuarioActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastraUsuarioActionPerformed
         new CadastroUsuarioView().setVisible(true);
@@ -208,12 +162,12 @@ public class MenuView extends javax.swing.JFrame
 
     private void jMenuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarClienteActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastrarClienteActionPerformed
-        // TODO add your handling code here:
+        new CadastroClienteView().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarClienteActionPerformed
 
     private void jMenuItemCadastrarLivroActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarLivroActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastrarLivroActionPerformed
-        // TODO add your handling code here:
+        new CadastroLivroView().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarLivroActionPerformed
 
     /**
@@ -269,7 +223,6 @@ public class MenuView extends javax.swing.JFrame
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButtonTestarUsuarioDao;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

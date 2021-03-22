@@ -2,7 +2,6 @@ package br.univates.controller;
 
 import br.univates.dao.AutorDao;
 import br.univates.dao.CategoriaDao;
-import br.univates.dao.ClienteDao;
 import br.univates.dao.Conexao;
 import br.univates.dao.EditoraDao;
 import br.univates.dao.LivroDao;
@@ -10,13 +9,11 @@ import br.univates.dao.Validacao;
 import br.univates.model.Autor;
 import br.univates.model.Editora;
 import br.univates.model.Livro;
-import br.univates.view.CadastroClienteView;
 import br.univates.view.CadastroLivroView;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 public class CadastroLivroController
 {
