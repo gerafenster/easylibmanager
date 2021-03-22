@@ -15,6 +15,8 @@ public class CadastroLivroView extends javax.swing.JFrame
     {
         initComponents();
         controller = new CadastroLivroController(this);
+        controller.buscarCategorias();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -62,8 +64,6 @@ public class CadastroLivroView extends javax.swing.JFrame
 
         jLabel6.setText("Categoria");
 
-        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener()
         {
@@ -87,7 +87,6 @@ public class CadastroLivroView extends javax.swing.JFrame
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldEditora, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +98,8 @@ public class CadastroLivroView extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSalvar)
                         .addGap(61, 61, 61))
-                    .addComponent(jFormattedTextFieldIsbn))
+                    .addComponent(jFormattedTextFieldIsbn)
+                    .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

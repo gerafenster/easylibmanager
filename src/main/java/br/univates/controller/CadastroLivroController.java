@@ -1,6 +1,8 @@
 package br.univates.controller;
 
 import br.univates.dao.AutorDao;
+import br.univates.dao.CategoriaDao;
+import br.univates.dao.ClienteDao;
 import br.univates.dao.Conexao;
 import br.univates.dao.EditoraDao;
 import br.univates.dao.LivroDao;
@@ -8,11 +10,13 @@ import br.univates.dao.Validacao;
 import br.univates.model.Autor;
 import br.univates.model.Editora;
 import br.univates.model.Livro;
+import br.univates.view.CadastroClienteView;
 import br.univates.view.CadastroLivroView;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class CadastroLivroController
 {
@@ -22,6 +26,24 @@ public class CadastroLivroController
     public CadastroLivroController(CadastroLivroView view)
     {
         this.view = view;
+    }
+
+    public void buscarCategorias()
+    {
+        try
+        {
+            Connection conexao;
+            conexao = new Conexao().getConnection();
+            CategoriaDao categoriaDao = new CategoriaDao(conexao);
+            for (int i = 0; i < categoriaDao.selectAll().size(); i++)
+            {
+                view.getjComboBoxCategoria().addItem(categoriaDao.selectAll().get(i).getNome());
+            }
+
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CadastroLivroController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public boolean validarCampos()
