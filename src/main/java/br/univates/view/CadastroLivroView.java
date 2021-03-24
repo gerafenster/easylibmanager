@@ -1,22 +1,25 @@
 package br.univates.view;
 
-import br.univates.controller.CadastroLivroController;
+import br.univates.dao.AutorDao;
+import br.univates.dao.DaoFactory;
+import br.univates.dao.EditoraDao;
+import br.univates.dao.LivroDao;
+import br.univates.dao.Validacao;
+import br.univates.model.Autor;
+import br.univates.model.Editora;
+import br.univates.model.Livro;
+import br.univates.system32.db.DataBaseException;
+import br.univates.system32.db.DuplicateKeyException;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class CadastroLivroView extends javax.swing.JFrame
 {
 
-    private final CadastroLivroController controller;
-
     public CadastroLivroView()
     {
         initComponents();
-        controller = new CadastroLivroController(this);
-        controller.buscarCategorias();
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -141,17 +144,59 @@ public class CadastroLivroView extends javax.swing.JFrame
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonSalvarActionPerformed
     {//GEN-HEADEREND:event_jButtonSalvarActionPerformed
-        if (controller.validarCampos())
-        {
-            controller.salvarLivro();
-            JOptionPane.showMessageDialog(null, "Livro salvo com sucesso!");
-            dispose();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Dados incorretos");
-        }
+        boolean isIsbnValid = Validacao.validarIsbn(jFormattedTextFieldIsbn.getText());
+        boolean isAnoValid = Validacao.validarAno(Integer.parseInt(jFormattedTextFieldAno.getText()));
 
+
+        String isbn = jFormattedTextFieldIsbn.getText();
+        int ano = Integer.parseInt(jFormattedTextFieldAno.getText());
+        String titulo = jTextFieldTitulo.getText();
+        boolean disponivel = true;
+        int categoriaId = jComboBoxCategoria.getSelectedIndex() + 1;
+        String nomeCompletoAutor = jTextFieldAutor.getText();
+        String nomeEditora = jTextFieldEditora.getText();
+        Autor autor;
+        Editora editora;
+
+        try
+        {
+            LivroDao dao = DaoFactory.newLivroDao();
+            
+        //  Verificar se autor já existe. Se não existe, inserir no BD.
+            AutorDao autorDao = DaoFactory.newAutorDao();
+            if (autorDao.readName(nomeCompletoAutor) != null)
+            {
+                autor = autorDao.readName(nomeCompletoAutor);
+            }
+            else
+            {
+                autor = new Autor(nomeCompletoAutor);
+                autorDao.create(autor);
+            }
+        //  Verificar se editora já existe. Se não existe, inserir no BD.
+            EditoraDao editoraDao = DaoFactory.newEditoraDao();
+            if (editoraDao.readName(nomeEditora) != null)
+            {
+                editora = editoraDao.readName(nomeEditora);
+            }
+            else
+            {
+                editora = new Editora(nomeEditora);
+                editoraDao.create(editora);
+            }
+        //  Por último, inserir o livro no BD.
+            LivroDao livroDao = DaoFactory.newLivroDao();
+            Livro livro = new Livro(isbn, ano, titulo, disponivel, autor.getId(), editora.getId(), categoriaId);
+            livroDao.create(livro);
+
+        } catch (DuplicateKeyException ex)
+        {
+            System.out.println("Chave duplicada");
+
+        } catch (DataBaseException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     public JComboBox<String> getjComboBoxCategoria()

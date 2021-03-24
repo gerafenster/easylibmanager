@@ -1,9 +1,10 @@
 package br.univates.view;
 
-import br.univates.controller.LoginController;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import br.univates.dao.DaoFactory;
+import br.univates.dao.Md5;
+import br.univates.dao.UsuarioDao;
+import br.univates.model.Usuario;
+import br.univates.system32.db.DataBaseException;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -11,12 +12,9 @@ import javax.swing.JTextField;
 public class LoginView extends javax.swing.JFrame
 {
 
-    LoginController controller;
-
     public LoginView()
     {
         initComponents();
-        controller = new LoginController(this);
     }
 
     /**
@@ -107,12 +105,27 @@ public class LoginView extends javax.swing.JFrame
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonEntrarActionPerformed
     {//GEN-HEADEREND:event_jButtonEntrarActionPerformed
-        try {
-            controller.autenticar();
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+        String login = jTextFieldLogin.getText();
+        String senha = Md5.getMd5(jPasswordFieldSenha.getText());
+
+        try
+        {
+            UsuarioDao dao = DaoFactory.newUsuarioDao();
+            Usuario usuarioAutenticar = new Usuario(login, senha);
+            if (dao.readLoginPassword(usuarioAutenticar) != null)
+            {
+                MenuView telaMenu = new MenuView();
+                telaMenu.setVisible(true);
+                dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos");
+            }
+        } catch (DataBaseException ex)
+        {
+            System.out.println(ex.getMessage());
         }
-        
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     private void jTextFieldLoginActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFieldLoginActionPerformed
@@ -130,20 +143,27 @@ public class LoginView extends javax.swing.JFrame
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>

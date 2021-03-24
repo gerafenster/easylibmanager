@@ -1,20 +1,23 @@
 package br.univates.view;
 
-import br.univates.controller.CadastroClienteController;
+import br.univates.dao.ClienteDao;
+import br.univates.dao.DaoFactory;
+import br.univates.model.Cliente;
+import br.univates.system32.db.DataBaseException;
+import br.univates.system32.db.DuplicateKeyException;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class CadastroClienteView extends javax.swing.JFrame
 {
 
-    private CadastroClienteController controller;
     /**
      * Creates new form CadastroClienteView
      */
     public CadastroClienteView()
     {
         initComponents();
-        controller = new CadastroClienteController(this);
     }
 
     /**
@@ -151,7 +154,29 @@ public class CadastroClienteView extends javax.swing.JFrame
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonSalvarActionPerformed
     {//GEN-HEADEREND:event_jButtonSalvarActionPerformed
-        controller.salvarCliente();
+        String nome = jTextFieldNome.getText();
+        String sobrenome = jTextFieldSobrenome.getText();
+        String cpf = jFormattedTextFieldCpf.getText();
+        String email = jTextFieldEmail.getText();
+        String telefone = jFormattedTextFieldTelefone.getText();
+        String celular = jFormattedTextFieldCelular.getText();
+
+        try
+        {
+            ClienteDao dao = DaoFactory.newClienteDao();
+            Cliente cliente = new Cliente(nome, sobrenome, cpf, email, telefone, celular);
+            dao.create(cliente);
+            JOptionPane.showMessageDialog(null, "Cliente salvo com sucesso!");
+            dispose();
+
+        } catch (DuplicateKeyException ex)
+        {
+            System.out.println("Chave duplicada");
+
+        } catch (DataBaseException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     public JFormattedTextField getjFormattedTextFieldCelular()
@@ -184,8 +209,6 @@ public class CadastroClienteView extends javax.swing.JFrame
         return jTextFieldSobrenome;
     }
 
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -196,21 +219,33 @@ public class CadastroClienteView extends javax.swing.JFrame
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex)
+        {
+            java.util.logging.Logger.getLogger(CadastroClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex)
+        {
+            java.util.logging.Logger.getLogger(CadastroClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex)
+        {
+            java.util.logging.Logger.getLogger(CadastroClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
+            java.util.logging.Logger.getLogger(CadastroClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

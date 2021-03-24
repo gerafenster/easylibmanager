@@ -1,7 +1,13 @@
 package br.univates.view;
 
-import br.univates.controller.CadastroUsuarioController;
+import br.univates.dao.DaoFactory;
+import br.univates.dao.Md5;
+import br.univates.dao.UsuarioDao;
+import br.univates.model.Usuario;
+import br.univates.system32.db.DataBaseException;
+import br.univates.system32.db.DuplicateKeyException;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -9,7 +15,6 @@ import javax.swing.JTextPane;
 public class CadastroUsuarioView extends javax.swing.JFrame
 {
 
-    private final CadastroUsuarioController controller;
     private String login_nome;
     private String login_sobrenome;
     private String login;
@@ -17,7 +22,6 @@ public class CadastroUsuarioView extends javax.swing.JFrame
     public CadastroUsuarioView()
     {
         initComponents();
-        controller = new CadastroUsuarioController(this);
     }
 
     /**
@@ -156,17 +160,40 @@ public class CadastroUsuarioView extends javax.swing.JFrame
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonSalvarActionPerformed
     {//GEN-HEADEREND:event_jButtonSalvarActionPerformed
-        controller.salvarUsuario();
+        String nome = jTextFieldNome.getText();
+        String sobrenome = jTextFieldSobrenome.getText();
+        String login = jTextPaneLogin.getText();
+        String senha = Md5.getMd5(jPasswordFieldSenha.getText());
+        String cpf = jFormattedTextFieldCpf.getText();
+
+        try
+        {
+            UsuarioDao dao = DaoFactory.newUsuarioDao();
+            Usuario usuario = new Usuario(nome, sobrenome, login, senha, cpf);
+            dao.create(usuario);
+            JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso!");
+            dispose();
+
+        } catch (DuplicateKeyException ex)
+        {
+            System.out.println("Chave duplicada");
+
+        } catch (DataBaseException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jTextFieldNomeFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jTextFieldNomeFocusLost
     {//GEN-HEADEREND:event_jTextFieldNomeFocusLost
         this.login_nome = jTextFieldNome.getText().trim();
-        if (this.login_sobrenome == null) {
+        if (this.login_sobrenome == null)
+        {
             this.login = login_nome + ".";
             jTextPaneLogin.setText(this.login.toLowerCase());
         }
-        else {
+        else
+        {
             this.login = login_nome + "." + login_sobrenome;
             jTextPaneLogin.setText(this.login.toLowerCase());
         }
@@ -176,11 +203,13 @@ public class CadastroUsuarioView extends javax.swing.JFrame
     private void jTextFieldSobrenomeFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jTextFieldSobrenomeFocusLost
     {//GEN-HEADEREND:event_jTextFieldSobrenomeFocusLost
         this.login_sobrenome = jTextFieldSobrenome.getText().trim();
-        if (this.login_nome == null) {
+        if (this.login_nome == null)
+        {
             this.login = "." + this.login_sobrenome;
             jTextPaneLogin.setText(this.login.toLowerCase());
         }
-        else {
+        else
+        {
             this.login = login_nome + "." + login_sobrenome;
             jTextPaneLogin.setText(this.login.toLowerCase());
         }
@@ -190,7 +219,7 @@ public class CadastroUsuarioView extends javax.swing.JFrame
     {
         return jTextPaneLogin;
     }
-    
+
     public JFormattedTextField getjFormattedTextFieldCpf()
     {
         return jFormattedTextFieldCpf;
@@ -211,8 +240,6 @@ public class CadastroUsuarioView extends javax.swing.JFrame
         return jTextFieldSobrenome;
     }
 
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -223,20 +250,27 @@ public class CadastroUsuarioView extends javax.swing.JFrame
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(CadastroUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(CadastroUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(CadastroUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(CadastroUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
