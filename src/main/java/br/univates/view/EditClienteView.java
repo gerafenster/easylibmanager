@@ -9,15 +9,23 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class CadastroClienteView extends javax.swing.JFrame
+public class EditClienteView extends javax.swing.JFrame
 {
 
     /**
      * Creates new form CadastroClienteView
      */
-    public CadastroClienteView()
+    public EditClienteView()
     {
         initComponents();
+
+//        jTextFieldNome.setText();
+//        jTextFieldSobrenome.setText();
+//        jFormattedTextFieldCpf.setText();
+//        jTextFieldEmail.setText();
+//        jFormattedTextFieldTelefone.setText();
+//        jFormattedTextFieldCelular.setText();
+
     }
 
     /**
@@ -166,7 +174,7 @@ public class CadastroClienteView extends javax.swing.JFrame
             ClienteDao dao = DaoFactory.newClienteDao();
             Cliente cliente = new Cliente(nome, sobrenome, cpf, email, telefone, celular);
             dao.create(cliente);
-            JOptionPane.showMessageDialog(null, "Cliente salvo com sucesso!");
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
             dispose();
 
         } catch (DuplicateKeyException ex)
@@ -232,21 +240,24 @@ public class CadastroClienteView extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroClienteView.class
+            java.util.logging.Logger.getLogger(EditClienteView.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroClienteView.class
+            java.util.logging.Logger.getLogger(EditClienteView.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroClienteView.class
+            java.util.logging.Logger.getLogger(EditClienteView.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroClienteView.class
+            java.util.logging.Logger.getLogger(EditClienteView.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -254,7 +265,7 @@ public class CadastroClienteView extends javax.swing.JFrame
         {
             public void run()
             {
-                new CadastroClienteView().setVisible(true);
+                new EditClienteView().setVisible(true);
             }
         });
     }

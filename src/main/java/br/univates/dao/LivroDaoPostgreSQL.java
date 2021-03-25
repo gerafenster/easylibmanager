@@ -10,12 +10,13 @@ import java.util.ArrayList;
 
 public class LivroDaoPostgreSQL implements LivroDao
 {
+
     private DataBaseConnectionManager connection;
 
     public LivroDaoPostgreSQL() throws DataBaseException
     {
-        this.connection = new DataBaseConnectionManager(DataBaseConnectionManager.POSTGRESQL, "easy_lib_manager", "postgres", "123");
-        //this.conexao = SistemaAgenda.getInstance().getDataBase();
+        this.connection = new DataBaseConnectionManager(
+                DataBaseConnectionManager.POSTGRESQL, "easylib_manager", "postgres", "123");
 
     }
 
@@ -25,9 +26,19 @@ public class LivroDaoPostgreSQL implements LivroDao
         if (livro != null)
         {
             String sql = "INSERT INTO livro (isbn, ano, titulo, is_disponivel, autor_id, editora_id, categoria_id)"
-                    + " VALUES('"+livro.getIsbn()+ "', "+livro.getAno()+", '"+livro.getTitulo()+"', '"
-                    +livro.isDisponivel()+"', "+livro.getAutorId()+", "+livro.getEditoraId()+", "+livro.getCategoriaId();
+                    + " VALUES('" + livro.getIsbn() + "', " + livro.getAno() + ", '" + livro.getTitulo() + "', '"
+                    + livro.isDisponivel() + "', " + livro.getAutorId() + ", " + livro.getEditoraId() + ", " + livro.getCategoriaId() + ")";
+            
+            System.out.println(livro.getIsbn());
+            System.out.println(livro.getAno());
+            System.out.println(livro.getTitulo());
+            System.out.println(livro.isDisponivel());
+            System.out.println(livro.getAutorId());
+            System.out.println(livro.getEditoraId());
+            System.out.println(livro.getCategoriaId());
+            
             connection.runSQL(sql);
+
         }
         else
         {
@@ -38,12 +49,12 @@ public class LivroDaoPostgreSQL implements LivroDao
     @Override
     public void edit(Livro livro) throws DataBaseException
     {
-        if (livro!= null)
+        if (livro != null)
         {
-            String sql = "UPDATE livro SET isbn = '"+livro.getIsbn()+"', ano = "+livro.getAno()
-                    +", titulo = '"+livro.getTitulo()+"', is_disponivel = "+livro.isDisponivel()
-                    +", autor_id = "+livro.getAutorId()+", editora_id = "+livro.getEditoraId()
-                    +", categoria_id = "+livro.getCategoriaId()+"  WHERE id = "+livro.getId();
+            String sql = "UPDATE livro SET isbn = '" + livro.getIsbn() + "', ano = " + livro.getAno()
+                    + ", titulo = '" + livro.getTitulo() + "', is_disponivel = " + livro.isDisponivel()
+                    + ", autor_id = " + livro.getAutorId() + ", editora_id = " + livro.getEditoraId()
+                    + ", categoria_id = " + livro.getCategoriaId() + "  WHERE id = " + livro.getId();
             connection.runSQL(sql);
         }
         else
@@ -57,7 +68,7 @@ public class LivroDaoPostgreSQL implements LivroDao
     {
         if (livro != null)
         {
-            String sql = "DELETE FROM cliente WHERE id = "+livro.getId();
+            String sql = "DELETE FROM cliente WHERE id = " + livro.getId();
             connection.runSQL(sql);
         }
         else
@@ -112,4 +123,5 @@ public class LivroDaoPostgreSQL implements LivroDao
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

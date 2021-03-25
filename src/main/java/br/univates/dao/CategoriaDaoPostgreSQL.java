@@ -13,7 +13,7 @@ public class CategoriaDaoPostgreSQL implements CategoriaDao
 {
     private final DataBaseConnectionManager connection;
 
-    public CategoriaDaoPostgreSQL(DataBaseConnectionManager connection) throws DataBaseException
+    public CategoriaDaoPostgreSQL() throws DataBaseException
     {
         this.connection = new DataBaseConnectionManager(
                 DataBaseConnectionManager.POSTGRESQL, "easylib_manager", "postgres", "123");

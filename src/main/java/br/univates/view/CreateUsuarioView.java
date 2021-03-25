@@ -12,14 +12,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-public class CadastroUsuarioView extends javax.swing.JFrame
+public class CreateUsuarioView extends javax.swing.JFrame
 {
 
     private String login_nome;
     private String login_sobrenome;
     private String login;
 
-    public CadastroUsuarioView()
+    public CreateUsuarioView()
     {
         initComponents();
     }
@@ -171,7 +171,7 @@ public class CadastroUsuarioView extends javax.swing.JFrame
             UsuarioDao dao = DaoFactory.newUsuarioDao();
             Usuario usuario = new Usuario(nome, sobrenome, login, senha, cpf);
             dao.create(usuario);
-            JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso!");
+            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
             dispose();
 
         } catch (DuplicateKeyException ex)
@@ -262,17 +262,25 @@ public class CadastroUsuarioView extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateUsuarioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -287,7 +295,7 @@ public class CadastroUsuarioView extends javax.swing.JFrame
         {
             public void run()
             {
-                new CadastroUsuarioView().setVisible(true);
+                new CreateUsuarioView().setVisible(true);
             }
         });
     }

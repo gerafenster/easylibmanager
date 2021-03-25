@@ -156,18 +156,18 @@ public class MenuView extends javax.swing.JFrame
 
     private void jMenuItemCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastraUsuarioActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastraUsuarioActionPerformed
-        new CadastroUsuarioView().setVisible(true);
+        new CreateUsuarioView().setVisible(true);
         
     }//GEN-LAST:event_jMenuItemCadastraUsuarioActionPerformed
 
     private void jMenuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarClienteActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastrarClienteActionPerformed
-        new CadastroClienteView().setVisible(true);
+        new CreateClienteView().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarClienteActionPerformed
 
     private void jMenuItemCadastrarLivroActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarLivroActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastrarLivroActionPerformed
-        new CadastroLivroView().setVisible(true);
+        new CreateLivroView().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarLivroActionPerformed
 
     /**

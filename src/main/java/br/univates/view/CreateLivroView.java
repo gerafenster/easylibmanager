@@ -1,6 +1,7 @@
 package br.univates.view;
 
 import br.univates.dao.AutorDao;
+import br.univates.dao.CategoriaDao;
 import br.univates.dao.DaoFactory;
 import br.univates.dao.EditoraDao;
 import br.univates.dao.LivroDao;
@@ -10,16 +11,30 @@ import br.univates.model.Editora;
 import br.univates.model.Livro;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.DuplicateKeyException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class CadastroLivroView extends javax.swing.JFrame
+public class CreateLivroView extends javax.swing.JFrame
 {
 
-    public CadastroLivroView()
+    public CreateLivroView()
     {
-        initComponents();
+        try
+        {
+            initComponents();
+            CategoriaDao categoriaDao = DaoFactory.newCategoriaDao();
+            for (int i = 0; i < categoriaDao.readAll().size(); i++)
+            {
+                jComboBoxCategoria.addItem(categoriaDao.readAll().get(i).getNome());
+            }
+        } catch (DataBaseException ex)
+        {
+            Logger.getLogger(CreateLivroView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -144,9 +159,8 @@ public class CadastroLivroView extends javax.swing.JFrame
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonSalvarActionPerformed
     {//GEN-HEADEREND:event_jButtonSalvarActionPerformed
-        boolean isIsbnValid = Validacao.validarIsbn(jFormattedTextFieldIsbn.getText());
-        boolean isAnoValid = Validacao.validarAno(Integer.parseInt(jFormattedTextFieldAno.getText()));
-
+//        boolean isIsbnValid = Validacao.validarIsbn(jFormattedTextFieldIsbn.getText());
+//        boolean isAnoValid = Validacao.validarAno(Integer.parseInt(jFormattedTextFieldAno.getText()));
 
         String isbn = jFormattedTextFieldIsbn.getText();
         int ano = Integer.parseInt(jFormattedTextFieldAno.getText());
@@ -157,12 +171,10 @@ public class CadastroLivroView extends javax.swing.JFrame
         String nomeEditora = jTextFieldEditora.getText();
         Autor autor;
         Editora editora;
-
+        
         try
         {
-            LivroDao dao = DaoFactory.newLivroDao();
-            
-        //  Verificar se autor já existe. Se não existe, inserir no BD.
+            //Verificar se autor já existe. Se não existe, inserir no BD.
             AutorDao autorDao = DaoFactory.newAutorDao();
             if (autorDao.readName(nomeCompletoAutor) != null)
             {
@@ -172,8 +184,9 @@ public class CadastroLivroView extends javax.swing.JFrame
             {
                 autor = new Autor(nomeCompletoAutor);
                 autorDao.create(autor);
+                autor = autorDao.readName(nomeCompletoAutor);
             }
-        //  Verificar se editora já existe. Se não existe, inserir no BD.
+//            //Verificar se editora já existe. Se não existe, inserir no BD.
             EditoraDao editoraDao = DaoFactory.newEditoraDao();
             if (editoraDao.readName(nomeEditora) != null)
             {
@@ -183,11 +196,14 @@ public class CadastroLivroView extends javax.swing.JFrame
             {
                 editora = new Editora(nomeEditora);
                 editoraDao.create(editora);
+                editora = editoraDao.readName(nomeEditora);
             }
-        //  Por último, inserir o livro no BD.
+//            //Por último, inserir o livro no BD.
             LivroDao livroDao = DaoFactory.newLivroDao();
             Livro livro = new Livro(isbn, ano, titulo, disponivel, autor.getId(), editora.getId(), categoriaId);
             livroDao.create(livro);
+            JOptionPane.showMessageDialog(null, "Livro cadastrado com sucesso!");
+            dispose();
 
         } catch (DuplicateKeyException ex)
         {
@@ -247,21 +263,27 @@ public class CadastroLivroView extends javax.swing.JFrame
                 {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroLivroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateLivroView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroLivroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateLivroView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroLivroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateLivroView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(CadastroLivroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateLivroView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -269,7 +291,7 @@ public class CadastroLivroView extends javax.swing.JFrame
         {
             public void run()
             {
-                new CadastroLivroView().setVisible(true);
+                new CreateLivroView().setVisible(true);
             }
         });
     }

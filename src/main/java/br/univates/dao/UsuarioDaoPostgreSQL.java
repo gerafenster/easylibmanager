@@ -5,12 +5,10 @@
  */
 package br.univates.dao;
 
-import br.univates.model.Cliente;
 import br.univates.model.Usuario;
 import br.univates.system32.db.DataBaseConnectionManager;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.Filter;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,7 +34,7 @@ public class UsuarioDaoPostgreSQL implements UsuarioDao
         if (usuario != null)
         {
             String sql = "INSERT INTO usuario(nome, sobrenome, login, senha, cpf) VALUES('" + usuario.getNome()
-                    + "', '" + usuario.getSobrenome() + "', '" + usuario.getLogin() + "', '" + usuario.getSenha() + "', '" + usuario.getCpf();
+                    + "', '" + usuario.getSobrenome() + "', '" + usuario.getLogin() + "', '" + usuario.getSenha() + "', '" + usuario.getCpf() + "')";
             connection.runSQL(sql);
         }
         else
@@ -128,6 +126,7 @@ public class UsuarioDaoPostgreSQL implements UsuarioDao
         return usuarios;
     }
 
+    @Override
     public Usuario readLoginPassword(Usuario usuario) throws DataBaseException
     {
         String sql = "SELECT * FROM usuario WHERE login = '"+usuario.getLogin()+"' AND senha = '"+usuario.getSenha()+"'";

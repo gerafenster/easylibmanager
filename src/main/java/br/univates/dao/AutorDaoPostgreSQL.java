@@ -99,9 +99,8 @@ public class AutorDaoPostgreSQL implements AutorDao
     @Override
     public Autor readName(String nomeCompleto) throws DataBaseException
     {
-        String sql = "SELECT * FROM autor WHERE nome = '"+nomeCompleto+"'";
+        String sql = "SELECT * FROM autor WHERE nome_completo = '"+nomeCompleto+"'";
         Autor autor = null;
-
         try
         {
             ResultSet rs = connection.runQuerySQL(sql);

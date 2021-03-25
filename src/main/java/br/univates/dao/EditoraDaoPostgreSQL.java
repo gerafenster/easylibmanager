@@ -23,7 +23,7 @@ public class EditoraDaoPostgreSQL implements EditoraDao
     {
         if (editora != null)
         {
-            String sql = "INSERT INTO editora (nome) VALUES ('" + editora.getNome() + ")";
+            String sql = "INSERT INTO editora (nome) VALUES ('" + editora.getNome() + "')";
             connection.runSQL(sql);
         }
         else

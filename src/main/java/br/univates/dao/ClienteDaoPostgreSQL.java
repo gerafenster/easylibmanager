@@ -15,7 +15,7 @@ public class ClienteDaoPostgreSQL implements ClienteDao
 
     public ClienteDaoPostgreSQL() throws DataBaseException
     {
-        this.connection = new DataBaseConnectionManager(DataBaseConnectionManager.POSTGRESQL, "easy_lib_manager", "postgres", "123");
+        this.connection = new DataBaseConnectionManager(DataBaseConnectionManager.POSTGRESQL, "easylib_manager", "postgres", "123");
         //this.conexao = SistemaAgenda.getInstance().getDataBase();
 
     }

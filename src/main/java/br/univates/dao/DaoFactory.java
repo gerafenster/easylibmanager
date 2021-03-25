@@ -29,4 +29,9 @@ public class DaoFactory
     {
         return new UsuarioDaoPostgreSQL();
     }
+    
+    public static CategoriaDao newCategoriaDao() throws DataBaseException{
+        return new CategoriaDaoPostgreSQL();
+    }
+    
 }
