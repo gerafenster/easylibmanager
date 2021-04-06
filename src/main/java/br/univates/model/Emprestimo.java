@@ -9,5 +9,12 @@ public class Emprestimo
     int funcionarioId;
     int usuarioId;
     int livroId;
-    
+
+    public Emprestimo(String dataEmprestimo, int funcionarioId, int usuarioId, int livroId)
+    {
+        this.dataEmprestimo = dataEmprestimo;
+        this.funcionarioId = funcionarioId;
+        this.usuarioId = usuarioId;
+        this.livroId = livroId;
+    }
 }
