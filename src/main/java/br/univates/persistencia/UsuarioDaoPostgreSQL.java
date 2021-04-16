@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.univates.dao;
+package br.univates.persistencia;
 
-import br.univates.model.Usuario;
+import br.univates.negocio.Usuario;
 import br.univates.system32.db.DataBaseConnectionManager;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.Filter;
@@ -13,10 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author cristian
- */
 public class UsuarioDaoPostgreSQL implements UsuarioDao
 {
 

@@ -1,21 +1,21 @@
-package br.univates.view;
+package br.univates.apresentacao;
 
-import br.univates.dao.ClienteDao;
-import br.univates.dao.DaoFactory;
-import br.univates.model.Cliente;
+import br.univates.persistencia.ClienteDao;
+import br.univates.persistencia.DaoFactory;
+import br.univates.negocio.Cliente;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.DuplicateKeyException;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class CreateClienteView extends javax.swing.JFrame
+public class TelaCadastroCliente extends javax.swing.JFrame
 {
 
     /**
      * Creates new form CadastroClienteView
      */
-    public CreateClienteView()
+    public TelaCadastroCliente()
     {
         initComponents();
     }
@@ -43,6 +43,9 @@ public class CreateClienteView extends javax.swing.JFrame
         jFormattedTextFieldTelefone = new javax.swing.JFormattedTextField();
         jTextFieldEmail = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,6 +94,18 @@ public class CreateClienteView extends javax.swing.JFrame
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Hack", 1, 13)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel9.setText("*");
+
+        jLabel10.setFont(new java.awt.Font("Hack", 1, 13)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel10.setText("*");
+
+        jLabel11.setFont(new java.awt.Font("Hack", 1, 13)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel11.setText("*");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,10 +118,19 @@ public class CreateClienteView extends javax.swing.JFrame
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel11))
                             .addComponent(jTextFieldNome)
-                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10))
                             .addComponent(jTextFieldSobrenome)
                             .addComponent(jFormattedTextFieldCpf)
                             .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
@@ -121,15 +145,21 @@ public class CreateClienteView extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -160,23 +190,32 @@ public class CreateClienteView extends javax.swing.JFrame
         String email = jTextFieldEmail.getText();
         String telefone = jFormattedTextFieldTelefone.getText();
         String celular = jFormattedTextFieldCelular.getText();
-
-        try
+        
+        if (nome.equals("") || sobrenome.equals("") || cpf.contains(" "))
         {
-            ClienteDao dao = DaoFactory.newClienteDao();
-            Cliente cliente = new Cliente(nome, sobrenome, cpf, email, telefone, celular);
-            dao.create(cliente);
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
-            dispose();
-
-        } catch (DuplicateKeyException ex)
-        {
-            System.out.println("Chave duplicada");
-
-        } catch (DataBaseException ex)
-        {
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios!");
         }
+        else
+        {
+            try
+            {
+                ClienteDao dao = DaoFactory.newClienteDao();
+                Cliente cliente = new Cliente(nome, sobrenome, cpf, email, telefone, celular);
+                dao.create(cliente);
+                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+                dispose();
+
+            } catch (DuplicateKeyException ex)
+            {
+                System.out.println("Chave duplicada");
+
+            } catch (DataBaseException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+        }
+
+
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     public JFormattedTextField getjFormattedTextFieldCelular()
@@ -232,21 +271,23 @@ public class CreateClienteView extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(CreateClienteView.class
+            java.util.logging.Logger.getLogger(TelaCadastroCliente.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(CreateClienteView.class
+            java.util.logging.Logger.getLogger(TelaCadastroCliente.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(CreateClienteView.class
+            java.util.logging.Logger.getLogger(TelaCadastroCliente.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(CreateClienteView.class
+            java.util.logging.Logger.getLogger(TelaCadastroCliente.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -255,7 +296,7 @@ public class CreateClienteView extends javax.swing.JFrame
         {
             public void run()
             {
-                new CreateClienteView().setVisible(true);
+                new TelaCadastroCliente().setVisible(true);
             }
         });
     }
@@ -266,11 +307,14 @@ public class CreateClienteView extends javax.swing.JFrame
     private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldSobrenome;

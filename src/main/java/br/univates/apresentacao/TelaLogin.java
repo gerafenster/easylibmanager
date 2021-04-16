@@ -1,18 +1,18 @@
-package br.univates.view;
+package br.univates.apresentacao;
 
-import br.univates.dao.DaoFactory;
-import br.univates.dao.Md5;
-import br.univates.dao.UsuarioDao;
-import br.univates.model.Usuario;
+import br.univates.persistencia.DaoFactory;
+import br.univates.persistencia.Md5;
+import br.univates.persistencia.UsuarioDao;
+import br.univates.negocio.Usuario;
 import br.univates.system32.db.DataBaseException;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class LoginView extends javax.swing.JFrame
+public class TelaLogin extends javax.swing.JFrame
 {
 
-    public LoginView()
+    public TelaLogin()
     {
         initComponents();
     }
@@ -114,7 +114,7 @@ public class LoginView extends javax.swing.JFrame
             Usuario usuarioAutenticar = new Usuario(login, senha);
             if (dao.readLoginPassword(usuarioAutenticar) != null)
             {
-                MenuView telaMenu = new MenuView();
+                TelaMenuPrincipal telaMenu = new TelaMenuPrincipal();
                 telaMenu.setVisible(true);
                 dispose();
             }
@@ -155,17 +155,21 @@ public class LoginView extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -176,7 +180,7 @@ public class LoginView extends javax.swing.JFrame
         {
             public void run()
             {
-                new LoginView().setVisible(true);
+                new TelaLogin().setVisible(true);
             }
         });
     }

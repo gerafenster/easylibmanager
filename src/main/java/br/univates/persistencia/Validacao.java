@@ -1,4 +1,4 @@
-package br.univates.dao;
+package br.univates.persistencia;
 
 public class Validacao
 {
@@ -10,7 +10,7 @@ public class Validacao
 
     public static boolean validarAno(int ano)
     {
-        return !(ano < 1450 || ano >= 2021);
+        return !(ano < 1450 || ano > 2021);
     }
 
 }

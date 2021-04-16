@@ -1,4 +1,4 @@
-package br.univates.dao;
+package br.univates.persistencia;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

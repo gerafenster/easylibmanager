@@ -1,6 +1,6 @@
-package br.univates.dao;
+package br.univates.persistencia;
 
-import br.univates.model.Categoria;
+import br.univates.negocio.Categoria;
 import br.univates.system32.db.DataBaseConnectionManager;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.DuplicateKeyException;

@@ -1,9 +1,9 @@
-package br.univates.view;
+package br.univates.apresentacao;
 
-public class MenuView extends javax.swing.JFrame
+public class TelaMenuPrincipal extends javax.swing.JFrame
 {
     
-    public MenuView()
+    public TelaMenuPrincipal()
     {
         initComponents();
     }
@@ -156,18 +156,18 @@ public class MenuView extends javax.swing.JFrame
 
     private void jMenuItemCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastraUsuarioActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastraUsuarioActionPerformed
-        new CreateUsuarioView().setVisible(true);
+        new TelaCadastroUsuario().setVisible(true);
         
     }//GEN-LAST:event_jMenuItemCadastraUsuarioActionPerformed
 
     private void jMenuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarClienteActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastrarClienteActionPerformed
-        new CreateClienteView().setVisible(true);
+        new TelaCadastroCliente().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarClienteActionPerformed
 
     private void jMenuItemCadastrarLivroActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarLivroActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastrarLivroActionPerformed
-        new CreateLivroView().setVisible(true);
+        new TelaCadastroLivro().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarLivroActionPerformed
 
     /**
@@ -188,14 +188,22 @@ public class MenuView extends javax.swing.JFrame
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -210,7 +218,7 @@ public class MenuView extends javax.swing.JFrame
         {
             public void run()
             {
-                new MenuView().setVisible(true);
+                new TelaMenuPrincipal().setVisible(true);
             }
         });
     }

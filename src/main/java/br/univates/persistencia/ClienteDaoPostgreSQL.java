@@ -1,6 +1,6 @@
-package br.univates.dao;
+package br.univates.persistencia;
 
-import br.univates.model.Cliente;
+import br.univates.negocio.Cliente;
 import br.univates.system32.db.DataBaseConnectionManager;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.Filter;

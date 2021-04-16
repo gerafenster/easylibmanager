@@ -1,21 +1,21 @@
-package br.univates.view;
+package br.univates.apresentacao;
 
-import br.univates.dao.ClienteDao;
-import br.univates.dao.DaoFactory;
-import br.univates.model.Cliente;
+import br.univates.persistencia.ClienteDao;
+import br.univates.persistencia.DaoFactory;
+import br.univates.negocio.Cliente;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.DuplicateKeyException;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class EditClienteView extends javax.swing.JFrame
+public class TelaEditarCliente extends javax.swing.JFrame
 {
 
     /**
      * Creates new form CadastroClienteView
      */
-    public EditClienteView()
+    public TelaEditarCliente()
     {
         initComponents();
 
@@ -240,21 +240,33 @@ public class EditClienteView extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(EditClienteView.class
+            java.util.logging.Logger.getLogger(TelaEditarCliente.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(EditClienteView.class
+            java.util.logging.Logger.getLogger(TelaEditarCliente.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(EditClienteView.class
+            java.util.logging.Logger.getLogger(TelaEditarCliente.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(EditClienteView.class
+            java.util.logging.Logger.getLogger(TelaEditarCliente.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -265,7 +277,7 @@ public class EditClienteView extends javax.swing.JFrame
         {
             public void run()
             {
-                new EditClienteView().setVisible(true);
+                new TelaEditarCliente().setVisible(true);
             }
         });
     }

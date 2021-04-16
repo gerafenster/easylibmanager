@@ -5,11 +5,8 @@ public class Main
 
     public static void main(String[] args)
     {
-        EasyLibManagerSystem x = EasyLibManagerSystem.getInstance();
-
-        x.qualquer();
-
-        EasyLibManagerSystem.getInstance().qualquer();
+        EasyLibManagerSystem sys = EasyLibManagerSystem.getInstance();
+        sys.start(); 
     }
 
 }

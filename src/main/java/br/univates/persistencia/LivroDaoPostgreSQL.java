@@ -1,6 +1,6 @@
-package br.univates.dao;
+package br.univates.persistencia;
 
-import br.univates.model.Livro;
+import br.univates.negocio.Livro;
 import br.univates.system32.db.DataBaseConnectionManager;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.Filter;
@@ -28,7 +28,7 @@ public class LivroDaoPostgreSQL implements LivroDao
             String sql = "INSERT INTO livro (isbn, ano, titulo, is_disponivel, autor_id, editora_id, categoria_id)"
                     + " VALUES('" + livro.getIsbn() + "', " + livro.getAno() + ", '" + livro.getTitulo() + "', '"
                     + livro.isDisponivel() + "', " + livro.getAutorId() + ", " + livro.getEditoraId() + ", " + livro.getCategoriaId() + ")";
-            
+
             System.out.println(livro.getIsbn());
             System.out.println(livro.getAno());
             System.out.println(livro.getTitulo());
@@ -36,7 +36,7 @@ public class LivroDaoPostgreSQL implements LivroDao
             System.out.println(livro.getAutorId());
             System.out.println(livro.getEditoraId());
             System.out.println(livro.getCategoriaId());
-            
+
             connection.runSQL(sql);
 
         }
@@ -97,7 +97,7 @@ public class LivroDaoPostgreSQL implements LivroDao
                 int autorId = rs.getInt("autor_id");
                 int editoraId = rs.getInt("editora_id");
                 int categoriaId = rs.getInt("categoria_id");
-                livro = new Livro(isbn, ano, titulo, isDisponivel, autorId, editoraId, categoriaId);
+                livro = new Livro(id, isbn, ano, titulo, isDisponivel, autorId, editoraId, categoriaId);
             }
         } catch (SQLException ex)
         {
@@ -107,19 +107,46 @@ public class LivroDaoPostgreSQL implements LivroDao
     }
 
     @Override
-    public ArrayList<Livro> read(Filter filter) throws DataBaseException
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public ArrayList<Livro> readAll() throws DataBaseException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Livro> livros = new ArrayList<>();
+        Livro livro = null;
+
+        try
+        {
+            String sql = "SELECT * FROM livro";
+            ResultSet rs = connection.runQuerySQL(sql);
+            if (rs.isBeforeFirst())
+            {
+                while (rs.next())
+                {
+                    rs.next();
+                    int id = rs.getInt("id");
+                    String isbn = rs.getString("isbn");
+                    int ano = rs.getInt("ano");
+                    String titulo = rs.getString("titulo");
+                    Boolean isDisponivel = rs.getBoolean("is_disponivel");
+                    int autorId = rs.getInt("autor_id");
+                    int editoraId = rs.getInt("editora_id");
+                    int categoriaId = rs.getInt("categoria_id");
+                    livro = new Livro(id, isbn, ano, titulo, isDisponivel, autorId, editoraId, categoriaId);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DataBaseException(ex.getMessage());
+        }
+        return livros;
     }
 
     @Override
     public Livro readName(String name) throws DataBaseException
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Livro> read(Filter filter) throws DataBaseException
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

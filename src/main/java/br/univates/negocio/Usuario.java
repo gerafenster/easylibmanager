@@ -1,4 +1,4 @@
-package br.univates.model;
+package br.univates.negocio;
 
 public class Usuario
 {

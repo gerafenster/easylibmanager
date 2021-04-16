@@ -1,7 +1,7 @@
-package br.univates.dao;
+package br.univates.persistencia;
 
-import br.univates.model.Livro;
-import br.univates.model.Usuario;
+import br.univates.negocio.Livro;
+import br.univates.negocio.Usuario;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.IDAO;
 

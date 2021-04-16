@@ -1,4 +1,4 @@
-package br.univates.dao;
+package br.univates.persistencia;
 
 import br.univates.system32.db.DataBaseException;
 
