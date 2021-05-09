@@ -8,31 +8,31 @@ public class Livro
     int ano;
     String titulo;
     boolean Disponivel;
-    int autorId;
-    int editoraId;
-    int categoriaId;
+    Autor autor;
+    Editora editora;
+    Categoria categoria;
 
-    public Livro(String isbn, int ano, String titulo, boolean isDisponivel, int autorId, int editoraId, int categoriaId)
-    {
-        this.isbn = isbn;
-        this.ano = ano;
-        this.titulo = titulo;
-        this.Disponivel = isDisponivel;
-        this.autorId = autorId;
-        this.editoraId = editoraId;
-        this.categoriaId = categoriaId;
-    }
-
-    public Livro(int id, String isbn, int ano, String titulo, boolean isDisponivel, int autorId, int editoraId, int categoriaId)
+    public Livro(int id, String isbn, int ano, String titulo, boolean Disponivel, Autor autor, Editora editora, Categoria categoria)
     {
         this.id = id;
         this.isbn = isbn;
         this.ano = ano;
         this.titulo = titulo;
-        this.Disponivel = isDisponivel;
-        this.autorId = autorId;
-        this.editoraId = editoraId;
-        this.categoriaId = categoriaId;
+        this.Disponivel = Disponivel;
+        this.autor = autor;
+        this.editora = editora;
+        this.categoria = categoria;
+    }
+
+    public Livro(String isbn, int ano, String titulo, boolean Disponivel, Autor autor, Editora editora, Categoria categoria)
+    {
+        this.isbn = isbn;
+        this.ano = ano;
+        this.titulo = titulo;
+        this.Disponivel = Disponivel;
+        this.autor = autor;
+        this.editora = editora;
+        this.categoria = categoria;
     }
 
     public int getId()
@@ -59,25 +59,64 @@ public class Livro
     {
         return Disponivel;
     }
-
-    public int getAutorId()
+    
+    public String isDisponivelString()
     {
-        return autorId;
+        if(Disponivel){
+            return "Sim";
+        }else{
+            return "Não";
+        }
     }
 
-    public int getEditoraId()
+    public Autor getAutor()
     {
-        return editoraId;
+        return autor;
     }
 
-    public int getCategoriaId()
+    public Editora getEditora()
     {
-        return categoriaId;
+        return editora;
     }
 
-    public void setId(int id)
+    public Categoria getCategoria()
     {
-        this.id = id;
+        return categoria;
+    }
+
+    public void setIsbn(String isbn)
+    {
+        this.isbn = isbn;
+    }
+
+    public void setAno(int ano)
+    {
+        this.ano = ano;
+    }
+
+    public void setTitulo(String titulo)
+    {
+        this.titulo = titulo;
+    }
+
+    public void setDisponivel(boolean Disponivel)
+    {
+        this.Disponivel = Disponivel;
+    }
+
+    public void setAutor(Autor autor)
+    {
+        this.autor = autor;
+    }
+
+    public void setEditora(Editora editora)
+    {
+        this.editora = editora;
+    }
+
+    public void setCategoria(Categoria categoria)
+    {
+        this.categoria = categoria;
     }
 
 }

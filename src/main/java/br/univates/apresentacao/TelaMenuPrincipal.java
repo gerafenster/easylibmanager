@@ -156,18 +156,18 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
 
     private void jMenuItemCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastraUsuarioActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastraUsuarioActionPerformed
-        new TelaCadastroUsuario().setVisible(true);
+        new TelaCadastroUsuarios().setVisible(true);
         
     }//GEN-LAST:event_jMenuItemCadastraUsuarioActionPerformed
 
     private void jMenuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarClienteActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastrarClienteActionPerformed
-        new TelaCadastroCliente().setVisible(true);
+        new TelaCadastroClientes().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarClienteActionPerformed
 
     private void jMenuItemCadastrarLivroActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarLivroActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastrarLivroActionPerformed
-        new TelaCadastroLivro().setVisible(true);
+        new TelaCadastroLivros().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarLivroActionPerformed
 
     /**

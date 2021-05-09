@@ -17,4 +17,9 @@ public class Categoria
         return nome;
     }
 
+    public int getId()
+    {
+        return id;
+    }
+
 }

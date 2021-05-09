@@ -1,5 +1,8 @@
 package br.univates.persistencia;
 
+import br.univates.negocio.Autor;
+import br.univates.negocio.Categoria;
+import br.univates.negocio.Editora;
 import br.univates.negocio.Livro;
 import br.univates.system32.db.DataBaseConnectionManager;
 import br.univates.system32.db.DataBaseException;
@@ -12,12 +15,20 @@ public class LivroDaoPostgreSQL implements LivroDao
 {
 
     private DataBaseConnectionManager connection;
+    private AutorDao autorDao;
+    private EditoraDao editoraDao;
+    private CategoriaDao categoriaDao;
+    private Autor autor;
+    private Editora editora;
+    private Categoria categoria;
 
     public LivroDaoPostgreSQL() throws DataBaseException
     {
         this.connection = new DataBaseConnectionManager(
                 DataBaseConnectionManager.POSTGRESQL, "easylib_manager", "postgres", "123");
-
+        autorDao = DaoFactory.newAutorDao();
+        editoraDao = DaoFactory.newEditoraDao();
+        categoriaDao = DaoFactory.newCategoriaDao();
     }
 
     @Override
@@ -27,15 +38,7 @@ public class LivroDaoPostgreSQL implements LivroDao
         {
             String sql = "INSERT INTO livro (isbn, ano, titulo, is_disponivel, autor_id, editora_id, categoria_id)"
                     + " VALUES('" + livro.getIsbn() + "', " + livro.getAno() + ", '" + livro.getTitulo() + "', '"
-                    + livro.isDisponivel() + "', " + livro.getAutorId() + ", " + livro.getEditoraId() + ", " + livro.getCategoriaId() + ")";
-
-            System.out.println(livro.getIsbn());
-            System.out.println(livro.getAno());
-            System.out.println(livro.getTitulo());
-            System.out.println(livro.isDisponivel());
-            System.out.println(livro.getAutorId());
-            System.out.println(livro.getEditoraId());
-            System.out.println(livro.getCategoriaId());
+                    + livro.isDisponivel() + "', " + livro.getAutor().getId() + ", " + livro.getEditora().getId() + ", " + livro.getCategoria().getId() + ")";
 
             connection.runSQL(sql);
 
@@ -53,8 +56,8 @@ public class LivroDaoPostgreSQL implements LivroDao
         {
             String sql = "UPDATE livro SET isbn = '" + livro.getIsbn() + "', ano = " + livro.getAno()
                     + ", titulo = '" + livro.getTitulo() + "', is_disponivel = " + livro.isDisponivel()
-                    + ", autor_id = " + livro.getAutorId() + ", editora_id = " + livro.getEditoraId()
-                    + ", categoria_id = " + livro.getCategoriaId() + "  WHERE id = " + livro.getId();
+                    + ", autor_id = " + livro.getAutor().getId() + ", editora_id = " + livro.getEditora().getId()
+                    + ", categoria_id = " + livro.getCategoria().getId() + "  WHERE id = " + livro.getId();
             connection.runSQL(sql);
         }
         else
@@ -68,7 +71,7 @@ public class LivroDaoPostgreSQL implements LivroDao
     {
         if (livro != null)
         {
-            String sql = "DELETE FROM cliente WHERE id = " + livro.getId();
+            String sql = "DELETE FROM livro WHERE id = " + livro.getId();
             connection.runSQL(sql);
         }
         else
@@ -80,7 +83,7 @@ public class LivroDaoPostgreSQL implements LivroDao
     @Override
     public Livro read(int id) throws DataBaseException
     {
-        String sql = "SELECT * FROM autor WHERE id = " + id + "";
+        String sql = "SELECT * FROM livro WHERE id = " + id + "";
         Livro livro = null;
 
         try
@@ -97,7 +100,10 @@ public class LivroDaoPostgreSQL implements LivroDao
                 int autorId = rs.getInt("autor_id");
                 int editoraId = rs.getInt("editora_id");
                 int categoriaId = rs.getInt("categoria_id");
-                livro = new Livro(id, isbn, ano, titulo, isDisponivel, autorId, editoraId, categoriaId);
+                autor = autorDao.read(autorId);
+                editora = editoraDao.read(editoraId);
+                categoria = categoriaDao.read(categoriaId);
+                livro = new Livro(id, isbn, ano, titulo, isDisponivel, autor, editora, categoria);
             }
         } catch (SQLException ex)
         {
@@ -111,16 +117,15 @@ public class LivroDaoPostgreSQL implements LivroDao
     {
         ArrayList<Livro> livros = new ArrayList<>();
         Livro livro = null;
+        String sql = "SELECT * FROM livro ORDER BY id";
 
         try
         {
-            String sql = "SELECT * FROM livro";
             ResultSet rs = connection.runQuerySQL(sql);
             if (rs.isBeforeFirst())
             {
                 while (rs.next())
                 {
-                    rs.next();
                     int id = rs.getInt("id");
                     String isbn = rs.getString("isbn");
                     int ano = rs.getInt("ano");
@@ -129,7 +134,11 @@ public class LivroDaoPostgreSQL implements LivroDao
                     int autorId = rs.getInt("autor_id");
                     int editoraId = rs.getInt("editora_id");
                     int categoriaId = rs.getInt("categoria_id");
-                    livro = new Livro(id, isbn, ano, titulo, isDisponivel, autorId, editoraId, categoriaId);
+                    autor = autorDao.read(autorId);
+                    editora = editoraDao.read(editoraId);
+                    categoria = categoriaDao.read(categoriaId);
+                    livro = new Livro(id, isbn, ano, titulo, isDisponivel, autor, editora, categoria);
+                    livros.add(livro);
                 }
             }
         } catch (SQLException ex)

@@ -102,7 +102,7 @@ public class ClienteDaoPostgreSQL implements ClienteDao
         ArrayList<Cliente> clientes = new ArrayList<>();
         try
         {
-            String sql = "SELECT * FROM cliente";
+            String sql = "SELECT * FROM cliente ORDER BY id";
             ResultSet rs = connection.runQuerySQL(sql);
             if (rs.isBeforeFirst())
             {
