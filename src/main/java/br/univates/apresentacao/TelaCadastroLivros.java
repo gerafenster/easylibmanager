@@ -1,5 +1,6 @@
 package br.univates.apresentacao;
 
+import br.univates.easylibmanager.EasyLibManagerSystem;
 import br.univates.persistencia.AutorDao;
 import br.univates.persistencia.CategoriaDao;
 import br.univates.persistencia.DaoFactory;
@@ -32,7 +33,9 @@ public class TelaCadastroLivros extends javax.swing.JFrame
     public TelaCadastroLivros()
     {
         initComponents();
-        
+        this.setLocationRelativeTo(null);
+        this.setTitle(EasyLibManagerSystem.getInstance().getApplicationName());
+
         novo = true;
 
         ArrayList<Livro> livros = new ArrayList();
@@ -75,9 +78,10 @@ public class TelaCadastroLivros extends javax.swing.JFrame
         try
         {
             CategoriaDao categoriaDao = DaoFactory.newCategoriaDao();
-            for (int i = 0; i < categoriaDao.readAll().size(); i++)
+            ArrayList<Categoria> categorias = categoriaDao.readAll();
+            for (Categoria categoria : categorias)
             {
-                jComboBoxCategoria.addItem(categoriaDao.readAll().get(i).getNome());
+                jComboBoxCategoria.addItem(categoria);
             }
         } catch (DataBaseException ex)
         {
@@ -88,7 +92,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame
         jTableLivros.getColumnModel().getColumn(1).setMaxWidth(70);
         jTableLivros.getColumnModel().getColumn(3).setMinWidth(120);
         jTableLivros.getColumnModel().getColumn(3).setMaxWidth(130);
-        
+
     }
 
     public void atualizarTabela()
@@ -356,17 +360,13 @@ public class TelaCadastroLivros extends javax.swing.JFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1054, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Fechar))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1054, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Fechar))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -509,7 +509,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame
         dispose();
     }//GEN-LAST:event_FecharActionPerformed
 
-    public JComboBox<String> getjComboBoxCategoria()
+    public JComboBox<Categoria> getjComboBoxCategoria()
     {
         return jComboBoxCategoria;
     }
@@ -601,7 +601,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame
     private javax.swing.JButton Fechar;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JComboBox<String> jComboBoxCategoria;
+    private javax.swing.JComboBox<Categoria> jComboBoxCategoria;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextFieldAno;
     private javax.swing.JFormattedTextField jFormattedTextFieldIsbn;

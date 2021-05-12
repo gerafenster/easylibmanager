@@ -1,5 +1,6 @@
 package br.univates.apresentacao;
 
+import br.univates.easylibmanager.EasyLibManagerSystem;
 import br.univates.persistencia.ClienteDao;
 import br.univates.persistencia.DaoFactory;
 import br.univates.negocio.Cliente;
@@ -23,6 +24,8 @@ public class TelaCadastroClientes extends javax.swing.JFrame
     public TelaCadastroClientes()
     {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle(EasyLibManagerSystem.getInstance().getApplicationName());
 
         novo = true;
 
@@ -91,10 +94,10 @@ public class TelaCadastroClientes extends javax.swing.JFrame
         jLabel6 = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
         jTextFieldSobrenome = new javax.swing.JTextField();
-        jFormattedTextFieldCpf = new javax.swing.JFormattedTextField();
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
+        jFormattedTextFieldCpf = new br.univates.system32.components.JMyCpfField();
         jLabel7 = new javax.swing.JLabel();
         jButtonFechar = new javax.swing.JButton();
 
@@ -162,14 +165,6 @@ public class TelaCadastroClientes extends javax.swing.JFrame
             }
         });
 
-        try
-        {
-            jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex)
-        {
-            ex.printStackTrace();
-        }
-
         jButtonNovo.setText("Novo");
         jButtonNovo.addActionListener(new java.awt.event.ActionListener()
         {
@@ -230,11 +225,10 @@ public class TelaCadastroClientes extends javax.swing.JFrame
                                 .addComponent(jLabel9))
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jFormattedTextFieldCpf)
-                                .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonNovo)
                         .addGap(18, 18, 18)
@@ -266,12 +260,11 @@ public class TelaCadastroClientes extends javax.swing.JFrame
                             .addComponent(jLabel4)
                             .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel9)))
-                        .addGap(12, 12, 12)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel9)
+                            .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
@@ -432,7 +425,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonFecharActionPerformed
     {//GEN-HEADEREND:event_jButtonFecharActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
     public JFormattedTextField getjFormattedTextFieldCelular()
@@ -528,7 +521,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JFormattedTextField jFormattedTextFieldCelular;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
+    private br.univates.system32.components.JMyCpfField jFormattedTextFieldCpf;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
