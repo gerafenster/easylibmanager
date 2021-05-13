@@ -13,11 +13,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>Authenticator</artifactId>
-            <version>0</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>System32</artifactId>
             <version>${project.version}</version>
         </dependency>

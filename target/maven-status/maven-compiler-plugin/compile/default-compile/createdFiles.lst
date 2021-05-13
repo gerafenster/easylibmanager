@@ -59,4 +59,5 @@ br/univates/apresentacao/TelaCadastroLivros$2.class
 br/univates/apresentacao/LivrosTableModel.class
 br/univates/persistencia/CategoriaDaoPostgreSQL.class
 br/univates/apresentacao/TelaEmprestimo.class
+br/univates/apresentacao/TelaEmprestimo$2.class
 br/univates/apresentacao/TelaMenuPrincipal$1.class
