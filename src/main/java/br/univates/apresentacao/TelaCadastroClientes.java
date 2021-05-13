@@ -57,7 +57,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame
                     cliente = tableModel.getClientes().get(jTableClientes.getSelectedRow());
                     jTextFieldNome.setText(cliente.getNome());
                     jTextFieldSobrenome.setText(cliente.getSobrenome());
-                    jFormattedTextFieldCpf.setText(cliente.getCpf());
+                    jMyCpfField.setText(cliente.getCpf());
                     jTextFieldEmail.setText(cliente.getEmail());
                     jFormattedTextFieldTelefone.setText(cliente.getTelefone());
                     jFormattedTextFieldCelular.setText(cliente.getCelular());
@@ -97,7 +97,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
-        jFormattedTextFieldCpf = new br.univates.system32.components.JMyCpfField();
+        jMyCpfField = new br.univates.system32.components.JMyCpfField();
         jLabel7 = new javax.swing.JLabel();
         jButtonFechar = new javax.swing.JButton();
 
@@ -228,7 +228,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                             .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                            .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jMyCpfField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonNovo)
                         .addGap(18, 18, 18)
@@ -263,7 +263,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel9)
-                            .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jMyCpfField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,7 +355,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jButtonSalvarActionPerformed
         String nome = jTextFieldNome.getText();
         String sobrenome = jTextFieldSobrenome.getText();
-        String cpf = jFormattedTextFieldCpf.getText();
+        String cpf = jMyCpfField.getText();
         String email = jTextFieldEmail.getText();
         String telefone = jFormattedTextFieldTelefone.getText();
         String celular = jFormattedTextFieldCelular.getText();
@@ -412,7 +412,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame
         novo = true;
         jTextFieldNome.setText("");
         jTextFieldSobrenome.setText("");
-        jFormattedTextFieldCpf.setText("");
+        jMyCpfField.setText("");
         jTextFieldEmail.setText("");
         jFormattedTextFieldTelefone.setText("");
         jFormattedTextFieldCelular.setText("");
@@ -435,7 +435,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame
 
     public JFormattedTextField getjFormattedTextFieldCpf()
     {
-        return jFormattedTextFieldCpf;
+        return jMyCpfField;
     }
 
     public JFormattedTextField getjFormattedTextFieldTelefone()
@@ -521,7 +521,6 @@ public class TelaCadastroClientes extends javax.swing.JFrame
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JFormattedTextField jFormattedTextFieldCelular;
-    private br.univates.system32.components.JMyCpfField jFormattedTextFieldCpf;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -533,6 +532,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private br.univates.system32.components.JMyCpfField jMyCpfField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableClientes;

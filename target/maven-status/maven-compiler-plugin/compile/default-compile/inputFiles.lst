@@ -12,6 +12,7 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/UsuarioDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/LivrosTableModel.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/ClienteDao.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaEmprestimo.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/AutorDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/EmprestimoDao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/easylibmanager/Main.java

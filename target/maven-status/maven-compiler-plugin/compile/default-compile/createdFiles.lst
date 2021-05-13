@@ -27,6 +27,7 @@ br/univates/persistencia/CategoriaDao.class
 br/univates/apresentacao/TelaLogin$1.class
 br/univates/apresentacao/TelaCadastroUsuarios.class
 br/univates/apresentacao/TelaCadastroUsuarios$1.class
+br/univates/apresentacao/TelaCadastroUsuarios$4.class
 br/univates/persistencia/DaoFactory.class
 br/univates/apresentacao/TelaCadastroLivros$1.class
 br/univates/negocio/Emprestimo.class
@@ -35,6 +36,7 @@ br/univates/apresentacao/TelaCadastroClientes$2.class
 br/univates/negocio/Editora.class
 br/univates/negocio/Categoria.class
 br/univates/apresentacao/TelaCadastroClientes.class
+br/univates/apresentacao/TelaEmprestimo$1.class
 br/univates/apresentacao/TelaCadastroLivros$5.class
 br/univates/apresentacao/TelaCadastroClientes$1.class
 br/univates/easylibmanager/EasyLibManagerSystem.class
@@ -56,4 +58,5 @@ br/univates/apresentacao/TelaCadastroClientes$4.class
 br/univates/apresentacao/TelaCadastroLivros$2.class
 br/univates/apresentacao/LivrosTableModel.class
 br/univates/persistencia/CategoriaDaoPostgreSQL.class
+br/univates/apresentacao/TelaEmprestimo.class
 br/univates/apresentacao/TelaMenuPrincipal$1.class
