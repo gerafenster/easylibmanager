@@ -6,6 +6,7 @@
 package br.univates.persistencia;
 
 import br.univates.negocio.Emprestimo;
+import br.univates.negocio.Livro;
 import br.univates.system32.db.Filter;
 
 /**
@@ -14,7 +15,13 @@ import br.univates.system32.db.Filter;
  */
 public class EmprestimoFiltro implements Filter<Emprestimo>
 {
+    private Livro livro;
 
+    public EmprestimoFiltro(Livro livro)
+    {
+        
+    }
+    
     @Override
     public boolean isApproved(Emprestimo emprestimo)
     {

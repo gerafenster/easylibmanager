@@ -1,10 +1,15 @@
 package br.univates.persistencia;
 
+import br.univates.negocio.Cliente;
 import br.univates.negocio.Emprestimo;
+import br.univates.negocio.Livro;
 import br.univates.system32.db.DataBaseConnectionManager;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.DuplicateKeyException;
 import br.univates.system32.db.Filter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class EmprestimoDaoPostgreSQL implements EmprestimoDao
@@ -27,7 +32,6 @@ public class EmprestimoDaoPostgreSQL implements EmprestimoDao
     {
         if (emprestimo != null)
         {
-//            INSERT INTO emprestimo (data_emprestimo, cliente_id, livro_id) values ('2000-02-02', 1, 1)
             String sql = "INSERT INTO emprestimo (data_emprestimo, cliente_id, livro_id) values "
                     + "('" + emprestimo.getDataEmprestimo().toString() + "', "
                     + "" + emprestimo.getCliente().getId() + ", "
@@ -63,13 +67,54 @@ public class EmprestimoDaoPostgreSQL implements EmprestimoDao
     @Override
     public ArrayList<Emprestimo> read(Filter filter) throws DataBaseException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Emprestimo> emprestimosFiltrados = new ArrayList();
+        ArrayList<Emprestimo> emprestimos = this.readAll();
+        for (Emprestimo emprestimo : emprestimos)
+        {
+            if (filter.isApproved(emprestimo))
+            {
+                emprestimosFiltrados.add(emprestimo);
+            }
+        }
+        return emprestimosFiltrados;
     }
 
     @Override
     public ArrayList<Emprestimo> readAll() throws DataBaseException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Emprestimo> emprestimos = new ArrayList<>();
+        try
+        {
+            String sql = "SELECT * FROM emprestimo ORDER BY id";
+            ResultSet rs = connection.runQuerySQL(sql);
+            if (rs.isBeforeFirst())
+            {
+                while (rs.next())
+                {
+                    int id = rs.getInt("id");
+                    LocalDate dataEmprestimo = LocalDate.parse(rs.getString("data_emprestimo"));
+                    LocalDate dataDevolução;
+                    if (rs.getString("data_devolucao").equals(""))
+                    {
+                        dataDevolução = null;
+                    }
+                    else
+                    {
+                        dataDevolução = LocalDate.parse(rs.getString("data_devolucao"));
+                    }
+                    clienteDao = DaoFactory.newClienteDao();
+                    Cliente cliente = clienteDao.read(rs.getInt("cliente_id"));
+                    livroDao = DaoFactory.newLivroDao();
+                    Livro livro = livroDao.read(rs.getInt("livro_id"));
+                    Emprestimo emprestimo = new Emprestimo(id, dataEmprestimo, dataDevolução, cliente, livro);
+                    emprestimos.add(emprestimo);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DataBaseException(ex.getMessage());
+        }
+        return emprestimos;
     }
 
 }

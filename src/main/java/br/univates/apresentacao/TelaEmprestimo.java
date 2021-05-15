@@ -13,7 +13,6 @@ import br.univates.persistencia.ClienteFiltro;
 import br.univates.persistencia.DaoFactory;
 import br.univates.persistencia.EmprestimoDao;
 import br.univates.persistencia.LivroDao;
-import br.univates.persistencia.LivroFiltro;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.DuplicateKeyException;
 import java.time.LocalDate;
@@ -284,6 +283,13 @@ public class TelaEmprestimo extends javax.swing.JFrame
         );
 
         jButtonFechar.setText("Fechar");
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButtonFecharActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -328,6 +334,8 @@ public class TelaEmprestimo extends javax.swing.JFrame
             cliente = clienteDao.read(filtroCpf).get(0);
             LivroDao livroDao = DaoFactory.newLivroDao();
             livro = livroDao.read(jMyNumberFieldCodigo.getInteger());
+            livro.setDisponivel(false);
+            livroDao.edit(livro);
         } catch (DataBaseException ex)
         {
             Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
@@ -382,6 +390,11 @@ public class TelaEmprestimo extends javax.swing.JFrame
             Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMyNumberFieldCodigoFocusLost
+
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonFecharActionPerformed
+    {//GEN-HEADEREND:event_jButtonFecharActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonFecharActionPerformed
 
     /**
      * @param args the command line arguments

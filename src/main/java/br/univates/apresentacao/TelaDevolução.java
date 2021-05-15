@@ -5,6 +5,13 @@
  */
 package br.univates.apresentacao;
 
+import br.univates.negocio.Livro;
+import br.univates.persistencia.DaoFactory;
+import br.univates.persistencia.LivroDao;
+import br.univates.system32.db.DataBaseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author cristian
@@ -41,11 +48,9 @@ public class TelaDevolução extends javax.swing.JFrame
         jLabel7 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         Título1 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jMyNumberFieldIsbn = new br.univates.system32.components.JMyNumberField();
         jTextFieldAno = new javax.swing.JTextField();
         jTextFieldTitulo = new javax.swing.JTextField();
         jTextFieldAutor = new javax.swing.JTextField();
@@ -58,6 +63,9 @@ public class TelaDevolução extends javax.swing.JFrame
         jLabel8 = new javax.swing.JLabel();
         jTextFieldDiasAtraso = new javax.swing.JTextField();
         jMyNumberFieldCodigo = new br.univates.system32.components.JMyNumberField();
+        jTextFieldIsbn = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jTextFieldCategoria = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -95,24 +103,13 @@ public class TelaDevolução extends javax.swing.JFrame
 
         jLabel10.setText("ISBN:");
 
-        jLabel16.setFont(new java.awt.Font("Hack", 1, 13)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel16.setText("*");
-
         jLabel11.setText("Ano:");
 
         Título1.setText("Título:");
 
         jLabel17.setText("Autor(es):");
 
-        jMyNumberFieldIsbn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jMyNumberFieldIsbnActionPerformed(evt);
-            }
-        });
-
+        jTextFieldAno.setEditable(false);
         jTextFieldAno.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -121,13 +118,39 @@ public class TelaDevolução extends javax.swing.JFrame
             }
         });
 
+        jTextFieldTitulo.setEditable(false);
+
+        jTextFieldAutor.setEditable(false);
+
         jLabel1.setText("Valor a pagar (multa):");
+
+        jTextFieldValorMulta.setEditable(false);
 
         jLabel2.setText("Data do empréstimo:");
 
         jLabel3.setText("Total de dias emprestado:");
 
+        jTextFieldDataEmprestimo.setEditable(false);
+
+        jTextFieldDiasEmprestado.setEditable(false);
+
         jLabel8.setText("Total de dias de atraso:");
+
+        jTextFieldDiasAtraso.setEditable(false);
+
+        jMyNumberFieldCodigo.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                jMyNumberFieldCodigoFocusLost(evt);
+            }
+        });
+
+        jTextFieldIsbn.setEditable(false);
+
+        jLabel16.setText("Categoria:");
+
+        jTextFieldCategoria.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,10 +165,7 @@ public class TelaDevolução extends javax.swing.JFrame
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel14))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel16))
+                            .addComponent(jLabel10)
                             .addComponent(Título1)
                             .addComponent(jLabel17))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -153,14 +173,19 @@ public class TelaDevolução extends javax.swing.JFrame
                             .addComponent(jTextFieldTitulo)
                             .addComponent(jTextFieldAutor)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(jMyNumberFieldIsbn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel11)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldIsbn))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel11))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jTextFieldCategoria)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -195,14 +220,16 @@ public class TelaDevolução extends javax.swing.JFrame
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel14)
-                    .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11)
+                        .addComponent(jTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
+                    .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
-                    .addComponent(jLabel11)
-                    .addComponent(jMyNumberFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Título1)
@@ -234,6 +261,8 @@ public class TelaDevolução extends javax.swing.JFrame
         jLabel9.setText("Cliente");
 
         jLabel15.setText("Nome Completo:");
+
+        jTextFieldNomeCompleto.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -323,15 +352,27 @@ public class TelaDevolução extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMyNumberFieldIsbnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMyNumberFieldIsbnActionPerformed
-    {//GEN-HEADEREND:event_jMyNumberFieldIsbnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMyNumberFieldIsbnActionPerformed
-
     private void jTextFieldAnoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFieldAnoActionPerformed
     {//GEN-HEADEREND:event_jTextFieldAnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAnoActionPerformed
+
+    private void jMyNumberFieldCodigoFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jMyNumberFieldCodigoFocusLost
+    {//GEN-HEADEREND:event_jMyNumberFieldCodigoFocusLost
+        try
+        {
+            LivroDao livroDao = DaoFactory.newLivroDao();
+            Livro livro = livroDao.read(Integer.parseInt(jMyNumberFieldCodigo.getText()));
+            jTextFieldIsbn.setText(livro.getIsbn());
+            jTextFieldAno.setText(String.valueOf(livro.getAno()));
+            jTextFieldCategoria.setText(livro.getCategoria().getNome());
+            jTextFieldTitulo.setText(livro.getTitulo());
+            jTextFieldAutor.setText(livro.getAutor().getNomeCompleto());
+        } catch (DataBaseException ex)
+        {
+            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMyNumberFieldCodigoFocusLost
 
     /**
      * @param args the command line arguments
@@ -400,15 +441,16 @@ public class TelaDevolução extends javax.swing.JFrame
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private br.univates.system32.components.JMyNumberField jMyNumberFieldCodigo;
-    private br.univates.system32.components.JMyNumberField jMyNumberFieldIsbn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextFieldAno;
     private javax.swing.JTextField jTextFieldAutor;
+    private javax.swing.JTextField jTextFieldCategoria;
     private javax.swing.JTextField jTextFieldDataEmprestimo;
     private javax.swing.JTextField jTextFieldDiasAtraso;
     private javax.swing.JTextField jTextFieldDiasEmprestado;
+    private javax.swing.JTextField jTextFieldIsbn;
     private javax.swing.JTextField jTextFieldNomeCompleto;
     private javax.swing.JTextField jTextFieldTitulo;
     private javax.swing.JTextField jTextFieldValorMulta;
