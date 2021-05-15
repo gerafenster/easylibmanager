@@ -15,17 +15,21 @@ import br.univates.system32.db.Filter;
  */
 public class EmprestimoFiltro implements Filter<Emprestimo>
 {
+
     private Livro livro;
 
     public EmprestimoFiltro(Livro livro)
     {
-        
+        this.livro = livro;
     }
-    
+
     @Override
     public boolean isApproved(Emprestimo emprestimo)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (livro.getId() == emprestimo.getLivro().getId())
+        {
+            return true;
+        }
+        return false;
     }
-    
 }

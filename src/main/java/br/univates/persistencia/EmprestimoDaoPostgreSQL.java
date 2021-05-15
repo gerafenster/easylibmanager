@@ -93,20 +93,20 @@ public class EmprestimoDaoPostgreSQL implements EmprestimoDao
                 {
                     int id = rs.getInt("id");
                     LocalDate dataEmprestimo = LocalDate.parse(rs.getString("data_emprestimo"));
-                    LocalDate dataDevolução;
-                    if (rs.getString("data_devolucao").equals(""))
+                    LocalDate dataDevolucao;
+                    if (rs.getString("data_devolucao") == null)
                     {
-                        dataDevolução = null;
+                        dataDevolucao = null;
                     }
                     else
                     {
-                        dataDevolução = LocalDate.parse(rs.getString("data_devolucao"));
+                        dataDevolucao = LocalDate.parse(rs.getString("data_devolucao"));
                     }
                     clienteDao = DaoFactory.newClienteDao();
                     Cliente cliente = clienteDao.read(rs.getInt("cliente_id"));
                     livroDao = DaoFactory.newLivroDao();
                     Livro livro = livroDao.read(rs.getInt("livro_id"));
-                    Emprestimo emprestimo = new Emprestimo(id, dataEmprestimo, dataDevolução, cliente, livro);
+                    Emprestimo emprestimo = new Emprestimo(id, dataEmprestimo, dataDevolucao, cliente, livro);
                     emprestimos.add(emprestimo);
                 }
             }
