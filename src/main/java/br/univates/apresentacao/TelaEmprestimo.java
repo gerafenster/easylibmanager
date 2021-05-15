@@ -8,20 +8,17 @@ package br.univates.apresentacao;
 import br.univates.negocio.Cliente;
 import br.univates.negocio.Emprestimo;
 import br.univates.negocio.Livro;
-import br.univates.negocio.Usuario;
 import br.univates.persistencia.ClienteDao;
+import br.univates.persistencia.ClienteFiltro;
 import br.univates.persistencia.DaoFactory;
 import br.univates.persistencia.EmprestimoDao;
 import br.univates.persistencia.LivroDao;
-import br.univates.persistencia.UsuarioDao;
+import br.univates.persistencia.LivroFiltro;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.DuplicateKeyException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,11 +33,6 @@ public class TelaEmprestimo extends javax.swing.JFrame
     public TelaEmprestimo()
     {
         initComponents();
-        LocalDate teste = LocalDate.now();
-        System.out.println(teste);
-        String vamo = "2019-06-15";
-        LocalDate teste2 = LocalDate.parse(vamo);
-        System.out.println(teste2);
     }
 
     /**
@@ -60,15 +52,16 @@ public class TelaEmprestimo extends javax.swing.JFrame
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jMyNumberFieldCodigo = new br.univates.system32.components.JMyNumberField();
-        jMyNumberFieldIsbn = new br.univates.system32.components.JMyNumberField();
         Título = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jTextFieldTitulo = new javax.swing.JTextField();
+        jTextFieldAutor = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jTextFieldAno = new javax.swing.JTextField();
+        jTextFieldIsbn = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextFieldCategoria = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -95,6 +88,14 @@ public class TelaEmprestimo extends javax.swing.JFrame
 
         jLabel6.setText("Código:");
 
+        jMyNumberFieldCodigo.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                jMyNumberFieldCodigoFocusLost(evt);
+            }
+        });
+
         Título.setText("Título:");
 
         jLabel7.setText("Autor(es):");
@@ -103,17 +104,19 @@ public class TelaEmprestimo extends javax.swing.JFrame
         jLabel13.setForeground(new java.awt.Color(204, 0, 0));
         jLabel13.setText("*");
 
-        jLabel14.setFont(new java.awt.Font("Hack", 1, 13)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel14.setText("*");
+        jTextFieldTitulo.setEditable(false);
 
-        jTextField3.setEditable(false);
-
-        jTextField4.setEditable(false);
+        jTextFieldAutor.setEditable(false);
 
         jLabel8.setText("Ano:");
 
-        jTextField5.setEditable(false);
+        jTextFieldAno.setEditable(false);
+
+        jTextFieldIsbn.setEditable(false);
+
+        jLabel9.setText("Categoria");
+
+        jTextFieldCategoria.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -124,10 +127,7 @@ public class TelaEmprestimo extends javax.swing.JFrame
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel14))
+                            .addComponent(jLabel5)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,18 +135,20 @@ public class TelaEmprestimo extends javax.swing.JFrame
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
+                            .addComponent(jTextFieldTitulo)
+                            .addComponent(jTextFieldAutor)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jMyNumberFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Título)
@@ -160,25 +162,28 @@ public class TelaEmprestimo extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jMyNumberFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Título)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -194,6 +199,14 @@ public class TelaEmprestimo extends javax.swing.JFrame
         jLabel11.setFont(new java.awt.Font("Hack", 1, 13)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 0, 0));
         jLabel11.setText("*");
+
+        jMyCpfField.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
+                jMyCpfFieldFocusLost(evt);
+            }
+        });
 
         jTextFieldNome.setEditable(false);
 
@@ -279,7 +292,7 @@ public class TelaEmprestimo extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -307,11 +320,12 @@ public class TelaEmprestimo extends javax.swing.JFrame
         LocalDate dataEmprestimo = LocalDate.now();
         Cliente cliente = null;
         Livro livro = null;
-        
+        ClienteFiltro filtroCpf = new ClienteFiltro(jMyCpfField.getText());
+
         try
         {
             ClienteDao clienteDao = DaoFactory.newClienteDao();
-            cliente = clienteDao.readCpf(jMyCpfField.getText());
+            cliente = clienteDao.read(filtroCpf).get(0);
             LivroDao livroDao = DaoFactory.newLivroDao();
             livro = livroDao.read(jMyNumberFieldCodigo.getInteger());
         } catch (DataBaseException ex)
@@ -320,7 +334,7 @@ public class TelaEmprestimo extends javax.swing.JFrame
         }
 
         Emprestimo emprestimo = new Emprestimo(dataEmprestimo, null, cliente, livro);
-        
+
         try
         {
             EmprestimoDao emprestimoDao = DaoFactory.newEmprestimoDao();
@@ -332,9 +346,42 @@ public class TelaEmprestimo extends javax.swing.JFrame
         {
             Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
 
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
+
+    private void jMyCpfFieldFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jMyCpfFieldFocusLost
+    {//GEN-HEADEREND:event_jMyCpfFieldFocusLost
+        ClienteFiltro filtroCpf = new ClienteFiltro(jMyCpfField.getText());
+        try
+        {
+            ClienteDao clienteDao = DaoFactory.newClienteDao();
+            Cliente cliente = clienteDao.read(filtroCpf).get(0);
+            jTextFieldNome.setText(cliente.getNome());
+        } catch (DataBaseException ex)
+        {
+            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jMyCpfFieldFocusLost
+
+    private void jMyNumberFieldCodigoFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jMyNumberFieldCodigoFocusLost
+    {//GEN-HEADEREND:event_jMyNumberFieldCodigoFocusLost
+        try
+        {
+            LivroDao livroDao = DaoFactory.newLivroDao();
+            Livro livro = livroDao.read(Integer.parseInt(jMyNumberFieldCodigo.getText()));
+            jTextFieldIsbn.setText(livro.getIsbn());
+            jTextFieldAno.setText(String.valueOf(livro.getAno()));
+            jTextFieldCategoria.setText(livro.getCategoria().getNome());
+            jTextFieldTitulo.setText(livro.getTitulo());
+            jTextFieldAutor.setText(livro.getAutor().getNomeCompleto());
+        } catch (DataBaseException ex)
+        {
+            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMyNumberFieldCodigoFocusLost
 
     /**
      * @param args the command line arguments
@@ -389,7 +436,6 @@ public class TelaEmprestimo extends javax.swing.JFrame
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -397,15 +443,17 @@ public class TelaEmprestimo extends javax.swing.JFrame
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private br.univates.system32.components.JMyCpfField jMyCpfField;
     private br.univates.system32.components.JMyNumberField jMyNumberFieldCodigo;
-    private br.univates.system32.components.JMyNumberField jMyNumberFieldIsbn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextFieldAno;
+    private javax.swing.JTextField jTextFieldAutor;
+    private javax.swing.JTextField jTextFieldCategoria;
+    private javax.swing.JTextField jTextFieldIsbn;
     private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JTextField jTextFieldTitulo;
     // End of variables declaration//GEN-END:variables
 }

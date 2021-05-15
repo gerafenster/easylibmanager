@@ -360,9 +360,14 @@ public class TelaCadastroClientes extends javax.swing.JFrame
         String telefone = jFormattedTextFieldTelefone.getText();
         String celular = jFormattedTextFieldCelular.getText();
 
-        if (nome.equals("") || sobrenome.equals("") || cpf.contains(" "))
+        if (jTextFieldNome.getText().equals("") || jTextFieldSobrenome.equals("")
+                || jMyCpfField.getText().contains(" "))
         {
             JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios!");
+        }
+        else if (!jMyCpfField.isRight())
+        {
+            JOptionPane.showMessageDialog(null, "CPF inválido!");
         }
         else
         {

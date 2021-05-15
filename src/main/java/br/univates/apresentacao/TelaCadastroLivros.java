@@ -1,4 +1,4 @@
-    package br.univates.apresentacao;
+package br.univates.apresentacao;
 
 import br.univates.easylibmanager.SistemaEasyLibManager;
 import br.univates.persistencia.AutorDao;
@@ -11,6 +11,7 @@ import br.univates.negocio.Categoria;
 import br.univates.negocio.Editora;
 import br.univates.negocio.Livro;
 import br.univates.persistencia.Validacao2;
+import br.univates.system32.components.JMyNumberField;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.DuplicateKeyException;
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame
                     jTextFieldAutor.setText(livro.getAutor().getNomeCompleto());
                     jTextFieldEditora.setText(livro.getEditora().getNome());
                     jFormattedTextFieldAno.setText(String.valueOf(livro.getAno()));
-                    jFormattedTextFieldIsbn.setText(livro.getIsbn());
+                    jMyNumberFieldIsbn.setText(livro.getIsbn());
                     jComboBoxCategoria.setSelectedIndex(livro.getCategoria().getId() - 1);
                     novo = false;
                 }
@@ -92,7 +93,6 @@ public class TelaCadastroLivros extends javax.swing.JFrame
         jTableLivros.getColumnModel().getColumn(1).setMaxWidth(70);
         jTableLivros.getColumnModel().getColumn(3).setMinWidth(120);
         jTableLivros.getColumnModel().getColumn(3).setMaxWidth(130);
-
     }
 
     public void atualizarTabela()
@@ -133,20 +133,20 @@ public class TelaCadastroLivros extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         jFormattedTextFieldAno = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldTitulo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldEditora = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldAutor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxCategoria = new javax.swing.JComboBox<>();
-        jFormattedTextFieldIsbn = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         Excluir = new javax.swing.JButton();
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
+        jMyNumberFieldIsbn = new br.univates.system32.components.JMyNumberField();
+        jTextFieldTitulo = new javax.swing.JTextField();
+        jTextFieldEditora = new javax.swing.JTextField();
+        jTextFieldAutor = new javax.swing.JTextField();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -214,14 +214,6 @@ public class TelaCadastroLivros extends javax.swing.JFrame
 
         jLabel6.setText("Categoria");
 
-        try
-        {
-            jFormattedTextFieldIsbn.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#############")));
-        } catch (java.text.ParseException ex)
-        {
-            ex.printStackTrace();
-        }
-
         jLabel8.setFont(new java.awt.Font("Hack", 1, 13)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 0, 0));
         jLabel8.setText("*");
@@ -281,10 +273,10 @@ public class TelaCadastroLivros extends javax.swing.JFrame
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel10)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldEditora, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldTitulo)
-                            .addComponent(jTextFieldAutor, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldAutor)
+                            .addComponent(jTextFieldEditora)
+                            .addComponent(jTextFieldTitulo))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -303,7 +295,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jFormattedTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jMyNumberFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -325,26 +317,26 @@ public class TelaCadastroLivros extends javax.swing.JFrame
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel10)
-                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel9)
-                    .addComponent(jFormattedTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel12)
-                    .addComponent(jTextFieldEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel8)
-                    .addComponent(jFormattedTextFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jMyNumberFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel11)
-                    .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel13)
-                    .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
@@ -392,7 +384,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonSalvarActionPerformed
     {//GEN-HEADEREND:event_jButtonSalvarActionPerformed
-        String isbn = jFormattedTextFieldIsbn.getText();
+        String isbn = jMyNumberFieldIsbn.getText();
         int ano = Integer.parseInt(jFormattedTextFieldAno.getText());
         String titulo = jTextFieldTitulo.getText();
         boolean disponivel = true;
@@ -403,7 +395,9 @@ public class TelaCadastroLivros extends javax.swing.JFrame
         Editora editora = null;
         Categoria categoria = null;
 
-        if (isbn.equals("") || titulo.equals("") || nomeCompletoAutor.equals("") || nomeEditora.equals(""))
+        if (jTextFieldTitulo.getText().equals("") || jTextFieldEditora.getText().equals("")
+                || jTextFieldAutor.getText().equals("") || jFormattedTextFieldAno.getText().equals("")
+                || jMyNumberFieldIsbn.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios!");
         }
@@ -413,7 +407,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame
         }
         else if (!Validacao2.validarIsbn(isbn))
         {
-            JOptionPane.showMessageDialog(null, "ISBN inválido. Favor inserir um ISBN de 13 dígitos.");
+            JOptionPane.showMessageDialog(null, "ISBN inválido.");
         }
         else if (!Validacao2.validarAno(ano))
         {
@@ -500,7 +494,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame
         jTextFieldAutor.setText("");
         jTextFieldEditora.setText("");
         jFormattedTextFieldAno.setText("");
-        jFormattedTextFieldIsbn.setText("");
+        jMyNumberFieldIsbn.setText("");
         jComboBoxCategoria.setSelectedIndex(0);
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
@@ -519,9 +513,9 @@ public class TelaCadastroLivros extends javax.swing.JFrame
         return jFormattedTextFieldAno;
     }
 
-    public JFormattedTextField getjFormattedTextFieldIsbn()
+    public JMyNumberField getjMyNumberFieldIsbn()
     {
-        return jFormattedTextFieldIsbn;
+        return jMyNumberFieldIsbn;
     }
 
     public JTextField getjTextFieldAutor()
@@ -604,7 +598,6 @@ public class TelaCadastroLivros extends javax.swing.JFrame
     private javax.swing.JComboBox<Categoria> jComboBoxCategoria;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextFieldAno;
-    private javax.swing.JFormattedTextField jFormattedTextFieldIsbn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -619,6 +612,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private br.univates.system32.components.JMyNumberField jMyNumberFieldIsbn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableLivros;

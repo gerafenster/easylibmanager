@@ -1,5 +1,9 @@
 package br.univates.persistencia;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Validacao2
 {
 
@@ -10,7 +14,9 @@ public class Validacao2
 
     public static boolean validarAno(int ano)
     {
-        return !(ano < 1450 || ano > 2021);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy");
+        String anoAtualString = dateTimeFormatter.format(LocalDate.now());
+        int anoAtualInt = Integer.parseInt(anoAtualString);
+        return !(ano < 1450 || ano > anoAtualInt);
     }
-    
 }

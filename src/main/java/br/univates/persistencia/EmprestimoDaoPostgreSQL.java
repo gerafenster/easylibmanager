@@ -27,8 +27,11 @@ public class EmprestimoDaoPostgreSQL implements EmprestimoDao
     {
         if (emprestimo != null)
         {
-            String sql = "INSERT INTO emprestimo (data_emprestimo, cliente_id, livro_id) values ('2000-02-02', 1, 1)";
-
+//            INSERT INTO emprestimo (data_emprestimo, cliente_id, livro_id) values ('2000-02-02', 1, 1)
+            String sql = "INSERT INTO emprestimo (data_emprestimo, cliente_id, livro_id) values "
+                    + "('" + emprestimo.getDataEmprestimo().toString() + "', "
+                    + "" + emprestimo.getCliente().getId() + ", "
+                    + "" + emprestimo.getLivro().getId() + ")";
             connection.runSQL(sql);
 
         }

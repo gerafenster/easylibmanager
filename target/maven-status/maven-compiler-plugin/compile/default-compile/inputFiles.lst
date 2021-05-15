@@ -1,6 +1,7 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Cliente.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaLogin.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Usuario.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaDevolução.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaMenuPrincipal.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/LivroDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/EditoraDao.java
@@ -16,9 +17,11 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/AutorDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/EmprestimoDao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/easylibmanager/Main.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/LivroFiltro.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/EditoraDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/CategoriaDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/AutorDao.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/EmprestimoFiltro.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/ClienteDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/EmprestimoDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/ClientesTableModel.java
@@ -33,3 +36,4 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Autor.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Main.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/LivroDao.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/ClienteFiltro.java

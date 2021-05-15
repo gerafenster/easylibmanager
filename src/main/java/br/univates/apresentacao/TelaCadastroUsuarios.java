@@ -5,11 +5,9 @@ import br.univates.persistencia.DaoFactory;
 import br.univates.persistencia.Md5;
 import br.univates.persistencia.UsuarioDao;
 import br.univates.negocio.Usuario;
-import br.univates.system32.Validacao;
 import br.univates.system32.components.JMyCpfField;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.DuplicateKeyException;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -236,21 +234,16 @@ public class TelaCadastroUsuarios extends javax.swing.JFrame
         String login = jTextPaneLogin.getText();
         String senha = Md5.getMd5(jPasswordFieldSenha.getText());
         String cpf = jMyCpfField.getText();
-        System.out.println(cpf.replaceAll("[^\\d]", ""));
-        if (Validacao.validarCPF(cpf.replaceAll("[^\\d]", "")))
-        {
-            System.out.println("cpf valido");
-        }
-        else
-        {
-            System.out.println("cpf nao valido");
-        }
 
-        if (nome.equals("") || sobrenome.equals("") || senha.equals("") || cpf.contains(" "))
+        if (jTextFieldNome.getText().strip().equals("") || jTextFieldSobrenome.getText().equals("")
+                || jPasswordFieldSenha.getText().equals("") || jMyCpfField.getText().contains(" "))
         {
             JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios!");
         }
-        else
+        else if (!jMyCpfField.isRight())
+        {
+            JOptionPane.showMessageDialog(null, "CPF inválido!");
+        }
         {
             try
             {
@@ -259,7 +252,6 @@ public class TelaCadastroUsuarios extends javax.swing.JFrame
                 dao.create(usuario);
                 JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
                 dispose();
-
             } catch (DuplicateKeyException ex)
             {
                 System.out.println("Chave duplicada");
@@ -267,9 +259,7 @@ public class TelaCadastroUsuarios extends javax.swing.JFrame
             } catch (DataBaseException ex)
             {
                 System.out.println(ex.getMessage());
-
             }
-
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 

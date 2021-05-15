@@ -126,11 +126,19 @@ public class ClienteDaoPostgreSQL implements ClienteDao
         return clientes;
     }
 
-
     @Override
     public ArrayList read(Filter filter) throws DataBaseException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Cliente> clientesFiltrados = new ArrayList();
+        ArrayList<Cliente> clientes = this.readAll();
+        for (Cliente cliente : clientes)
+        {
+            if (filter.isApproved(cliente))
+            {
+                clientesFiltrados.add(cliente);
+            }
+        }
+        return clientesFiltrados;
     }
 
     @Override
