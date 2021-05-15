@@ -1,6 +1,6 @@
     package br.univates.apresentacao;
 
-import br.univates.easylibmanager.EasyLibManagerSystem;
+import br.univates.easylibmanager.SistemaEasyLibManager;
 import br.univates.persistencia.AutorDao;
 import br.univates.persistencia.CategoriaDao;
 import br.univates.persistencia.DaoFactory;
@@ -34,7 +34,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame
     {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle(EasyLibManagerSystem.getInstance().getApplicationName());
+        this.setTitle(SistemaEasyLibManager.getInstance().getApplicationName());
 
         novo = true;
 

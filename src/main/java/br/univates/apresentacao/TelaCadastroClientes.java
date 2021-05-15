@@ -1,6 +1,6 @@
 package br.univates.apresentacao;
 
-import br.univates.easylibmanager.EasyLibManagerSystem;
+import br.univates.easylibmanager.SistemaEasyLibManager;
 import br.univates.persistencia.ClienteDao;
 import br.univates.persistencia.DaoFactory;
 import br.univates.negocio.Cliente;
@@ -25,7 +25,7 @@ public class TelaCadastroClientes extends javax.swing.JFrame
     {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle(EasyLibManagerSystem.getInstance().getApplicationName());
+        this.setTitle(SistemaEasyLibManager.getInstance().getApplicationName());
 
         novo = true;
 

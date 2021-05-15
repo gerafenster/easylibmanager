@@ -14,7 +14,7 @@ public class DaoFactory
     {
         return new LivroDaoPostgreSQL();
     }
-    
+
     public static AutorDao newAutorDao() throws DataBaseException
     {
         return new AutorDaoPostgreSQL();
@@ -23,15 +23,21 @@ public class DaoFactory
     public static EditoraDao newEditoraDao() throws DataBaseException
     {
         return new EditoraDaoPostgreSQL();
-    }    
-    
+    }
+
     public static UsuarioDao newUsuarioDao() throws DataBaseException
     {
         return new UsuarioDaoPostgreSQL();
     }
-    
-    public static CategoriaDao newCategoriaDao() throws DataBaseException{
+
+    public static CategoriaDao newCategoriaDao() throws DataBaseException
+    {
         return new CategoriaDaoPostgreSQL();
     }
-    
+
+    public static EmprestimoDao newEmprestimoDao() throws DataBaseException
+    {
+        return new EmprestimoDaoPostgreSQL();
+    }
+
 }

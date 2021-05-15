@@ -126,6 +126,7 @@ public class ClienteDaoPostgreSQL implements ClienteDao
         return clientes;
     }
 
+
     @Override
     public ArrayList read(Filter filter) throws DataBaseException
     {

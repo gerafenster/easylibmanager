@@ -1,6 +1,6 @@
 package br.univates.apresentacao;
 
-import br.univates.easylibmanager.EasyLibManagerSystem;
+import br.univates.easylibmanager.SistemaEasyLibManager;
 import br.univates.persistencia.DaoFactory;
 import br.univates.persistencia.Md5;
 import br.univates.persistencia.UsuarioDao;
@@ -17,7 +17,7 @@ public class TelaLogin extends javax.swing.JFrame
     {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle(EasyLibManagerSystem.getInstance().getApplicationName());
+        this.setTitle(SistemaEasyLibManager.getInstance().getApplicationName());
     }
 
     /**

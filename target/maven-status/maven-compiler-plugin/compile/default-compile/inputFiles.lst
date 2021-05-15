@@ -18,7 +18,6 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/easylibmanager/Main.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/EditoraDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/CategoriaDaoPostgreSQL.java
-/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/easylibmanager/EasyLibManagerSystem.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/AutorDao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/ClienteDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/EmprestimoDaoPostgreSQL.java
@@ -27,6 +26,7 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/DaoFactory.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Livro.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaCadastroLivros.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/easylibmanager/SistemaEasyLibManager.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Categoria.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/UsuarioDao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Editora.java

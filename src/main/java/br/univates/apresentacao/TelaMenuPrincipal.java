@@ -1,6 +1,6 @@
 package br.univates.apresentacao;
 
-import br.univates.easylibmanager.EasyLibManagerSystem;
+import br.univates.easylibmanager.SistemaEasyLibManager;
 
 public class TelaMenuPrincipal extends javax.swing.JFrame
 {
@@ -9,7 +9,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
     {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle(EasyLibManagerSystem.getInstance().getApplicationName());
+        this.setTitle(SistemaEasyLibManager.getInstance().getApplicationName());
     }
 
     /**
@@ -32,10 +32,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemCadastrarCliente = new javax.swing.JMenuItem();
         jMenuItemCadastrarLivro = new javax.swing.JMenuItem();
@@ -60,20 +56,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Editar");
-        jMenu2.setToolTipText("");
-
-        jMenuItem5.setText("Cliente");
-        jMenu2.add(jMenuItem5);
-
-        jMenuItem7.setText("Livro");
-        jMenu2.add(jMenuItem7);
-
-        jMenuItem6.setText("Usuário");
-        jMenu2.add(jMenuItem6);
-
-        jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Cadastros");
 
@@ -235,15 +217,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItemCadastraUsuario;
     private javax.swing.JMenuItem jMenuItemCadastrarCliente;

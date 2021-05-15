@@ -5,10 +5,10 @@ br/univates/negocio/Autor.class
 br/univates/apresentacao/TelaLogin$2.class
 br/univates/apresentacao/TelaCadastroUsuarios$2.class
 br/univates/persistencia/EmprestimoDaoPostgreSQL.class
+br/univates/easylibmanager/SistemaEasyLibManager$1.class
 br/univates/persistencia/Md5.class
 br/univates/apresentacao/ClientesTableModel.class
 br/univates/easylibmanager/Main.class
-br/univates/easylibmanager/EasyLibManagerSystem$1.class
 br/univates/apresentacao/TelaCadastroClientes$3.class
 br/univates/apresentacao/TelaLogin.class
 br/univates/persistencia/ClienteDao.class
@@ -39,11 +39,9 @@ br/univates/apresentacao/TelaCadastroClientes.class
 br/univates/apresentacao/TelaEmprestimo$1.class
 br/univates/apresentacao/TelaCadastroLivros$5.class
 br/univates/apresentacao/TelaCadastroClientes$1.class
-br/univates/easylibmanager/EasyLibManagerSystem.class
 br/univates/persistencia/AutorDaoPostgreSQL.class
 br/univates/negocio/Main.class
 br/univates/persistencia/LivroDaoPostgreSQL.class
-br/univates/easylibmanager/EasyLibManagerSystem$2.class
 br/univates/negocio/Cliente.class
 br/univates/persistencia/LivroDao.class
 br/univates/apresentacao/TelaCadastroUsuarios$3.class
@@ -59,5 +57,7 @@ br/univates/apresentacao/TelaCadastroLivros$2.class
 br/univates/apresentacao/LivrosTableModel.class
 br/univates/persistencia/CategoriaDaoPostgreSQL.class
 br/univates/apresentacao/TelaEmprestimo.class
+br/univates/easylibmanager/SistemaEasyLibManager$2.class
 br/univates/apresentacao/TelaEmprestimo$2.class
+br/univates/easylibmanager/SistemaEasyLibManager.class
 br/univates/apresentacao/TelaMenuPrincipal$1.class

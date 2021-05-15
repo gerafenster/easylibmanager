@@ -1,21 +1,25 @@
 package br.univates.easylibmanager;
 
 import br.univates.apresentacao.TelaLogin;
+import br.univates.apresentacao.TelaMenuPrincipal;
+import br.univates.authenticator.Authenticator;
+import br.univates.authenticator.GenericUser;
 import br.univates.system32.app.Application;
 import br.univates.system32.app.ApplicationProcess;
 import br.univates.system32.app.FatalSystemException;
+import java.util.ArrayList;
 
-public class EasyLibManagerSystem extends Application
+public class SistemaEasyLibManager extends Application
 {
 
-    private static EasyLibManagerSystem sys = new EasyLibManagerSystem();
+    private static SistemaEasyLibManager sys = new SistemaEasyLibManager();
 
-    public static EasyLibManagerSystem getInstance()
+    public static SistemaEasyLibManager getInstance()
     {
         return sys;
     }
 
-    private EasyLibManagerSystem()
+    private SistemaEasyLibManager()
     {
         super("EasyLib Manager", "easylib_manager");
     }
@@ -45,10 +49,11 @@ public class EasyLibManagerSystem extends Application
                 t.setVisible(true);
             }
         });
+
     }
 
-    @Override
-    public void defineFinalProcesses()
+@Override
+public void defineFinalProcesses()
     {
 
     }

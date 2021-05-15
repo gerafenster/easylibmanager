@@ -6,10 +6,22 @@
 package br.univates.apresentacao;
 
 import br.univates.negocio.Cliente;
+import br.univates.negocio.Emprestimo;
+import br.univates.negocio.Livro;
+import br.univates.negocio.Usuario;
 import br.univates.persistencia.ClienteDao;
 import br.univates.persistencia.DaoFactory;
+import br.univates.persistencia.EmprestimoDao;
+import br.univates.persistencia.LivroDao;
+import br.univates.persistencia.UsuarioDao;
+import br.univates.system32.db.DataBaseException;
+import br.univates.system32.db.DuplicateKeyException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +36,11 @@ public class TelaEmprestimo extends javax.swing.JFrame
     public TelaEmprestimo()
     {
         initComponents();
+        LocalDate teste = LocalDate.now();
+        System.out.println(teste);
+        String vamo = "2019-06-15";
+        LocalDate teste2 = LocalDate.parse(vamo);
+        System.out.println(teste2);
     }
 
     /**
@@ -118,15 +135,18 @@ public class TelaEmprestimo extends javax.swing.JFrame
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jMyNumberFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTextField3)
-                            .addComponent(jTextField4)))
+                            .addComponent(jTextField4)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jMyNumberFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jMyNumberFieldIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Título)
@@ -284,10 +304,36 @@ public class TelaEmprestimo extends javax.swing.JFrame
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonRegistrarActionPerformed
     {//GEN-HEADEREND:event_jButtonRegistrarActionPerformed
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime dataEmprestimo = LocalDateTime.now();
-//        ClienteDao clienteDao = DaoFactory.newClienteDao();
-//        Cliente cliente = clienteDao.read
+        LocalDate dataEmprestimo = LocalDate.now();
+        Cliente cliente = null;
+        Livro livro = null;
+        
+        try
+        {
+            ClienteDao clienteDao = DaoFactory.newClienteDao();
+            cliente = clienteDao.readCpf(jMyCpfField.getText());
+            LivroDao livroDao = DaoFactory.newLivroDao();
+            livro = livroDao.read(jMyNumberFieldCodigo.getInteger());
+        } catch (DataBaseException ex)
+        {
+            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Emprestimo emprestimo = new Emprestimo(dataEmprestimo, null, cliente, livro);
+        
+        try
+        {
+            EmprestimoDao emprestimoDao = DaoFactory.newEmprestimoDao();
+            emprestimoDao.create(emprestimo);
+        } catch (DataBaseException ex)
+        {
+            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DuplicateKeyException ex)
+        {
+            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     /**
