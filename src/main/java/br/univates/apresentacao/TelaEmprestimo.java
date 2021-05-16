@@ -18,6 +18,7 @@ import br.univates.system32.db.DuplicateKeyException;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -297,13 +298,15 @@ public class TelaEmprestimo extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonFechar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonFechar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -326,35 +329,65 @@ public class TelaEmprestimo extends javax.swing.JFrame
         LocalDate dataEmprestimo = LocalDate.now();
         Cliente cliente = null;
         Livro livro = null;
-        ClienteFiltro filtroCpf = new ClienteFiltro(jMyCpfField.getText());
 
-        try
+        if (jMyCpfField.getText().contains("") || jMyNumberFieldCodigo.getText().equals(""))
         {
-            ClienteDao clienteDao = DaoFactory.newClienteDao();
-            cliente = clienteDao.read(filtroCpf).get(0);
-            LivroDao livroDao = DaoFactory.newLivroDao();
-            livro = livroDao.read(jMyNumberFieldCodigo.getInteger());
-            livro.setDisponivel(false);
-            livroDao.edit(livro);
-        } catch (DataBaseException ex)
-        {
-            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios!");
         }
+        else
+        {
+            try
+            {
+                ClienteFiltro filtroCpf = new ClienteFiltro(jMyCpfField.getText());
+                ClienteDao clienteDao = DaoFactory.newClienteDao();
+                cliente = clienteDao.read(filtroCpf).get(0);
+                LivroDao livroDao = DaoFactory.newLivroDao();
+                livro = livroDao.read(jMyNumberFieldCodigo.getInteger());
+                livro.setDisponivel(false);
+                livroDao.edit(livro);
+            } catch (DataBaseException ex)
+            {
+                System.out.println("aqui");
+                Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-        Emprestimo emprestimo = new Emprestimo(dataEmprestimo, null, cliente, livro);
+            if (cliente == null && livro == null)
+            {
+                JOptionPane.showMessageDialog(null, "Cliente e livro não registrados no sistema!");
+            }
+            else if (cliente == null)
+            {
+                JOptionPane.showMessageDialog(null, "Cliente não registrado no sistema!");
+            }
+            else if (livro == null)
+            {
+                JOptionPane.showMessageDialog(null, "Livro não registrado no sistema!");
+            }
 
-        try
-        {
-            EmprestimoDao emprestimoDao = DaoFactory.newEmprestimoDao();
-            emprestimoDao.create(emprestimo);
-        } catch (DataBaseException ex)
-        {
-            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DuplicateKeyException ex)
-        {
-            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+            if (cliente != null && livro != null)
+            {
+                Emprestimo emprestimo = new Emprestimo(dataEmprestimo, null, cliente, livro);
+
+                try
+                {
+                    EmprestimoDao emprestimoDao = DaoFactory.newEmprestimoDao();
+                    emprestimoDao.create(emprestimo);
+                } catch (DataBaseException ex)
+                {
+                    Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (DuplicateKeyException ex)
+                {
+                    Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(null, "Empréstimo registrado com sucesso!");
+                jMyNumberFieldCodigo.setText("");
+                jTextFieldIsbn.setText("");
+                jTextFieldAno.setText("");
+                jTextFieldCategoria.setText("");
+                jTextFieldTitulo.setText("");
+                jTextFieldAutor.setText("");
+            }
         }
-
 
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
@@ -364,8 +397,16 @@ public class TelaEmprestimo extends javax.swing.JFrame
         try
         {
             ClienteDao clienteDao = DaoFactory.newClienteDao();
-            Cliente cliente = clienteDao.read(filtroCpf).get(0);
-            jTextFieldNome.setText(cliente.getNome());
+            if (!clienteDao.read(filtroCpf).isEmpty())
+            {
+                Cliente cliente = clienteDao.read(filtroCpf).get(0);
+                jTextFieldNome.setText(cliente.getNome());
+            }
+            else
+            {
+                jTextFieldNome.setText("");
+            }
+
         } catch (DataBaseException ex)
         {
             Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
@@ -376,19 +417,43 @@ public class TelaEmprestimo extends javax.swing.JFrame
 
     private void jMyNumberFieldCodigoFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jMyNumberFieldCodigoFocusLost
     {//GEN-HEADEREND:event_jMyNumberFieldCodigoFocusLost
-        try
+        if (!jMyNumberFieldCodigo.getText().isEmpty())
         {
-            LivroDao livroDao = DaoFactory.newLivroDao();
-            Livro livro = livroDao.read(Integer.parseInt(jMyNumberFieldCodigo.getText()));
-            jTextFieldIsbn.setText(livro.getIsbn());
-            jTextFieldAno.setText(String.valueOf(livro.getAno()));
-            jTextFieldCategoria.setText(livro.getCategoria().getNome());
-            jTextFieldTitulo.setText(livro.getTitulo());
-            jTextFieldAutor.setText(livro.getAutor().getNomeCompleto());
-        } catch (DataBaseException ex)
-        {
-            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+            try
+            {
+
+                LivroDao livroDao = DaoFactory.newLivroDao();
+                if (livroDao.read(Integer.parseInt(jMyNumberFieldCodigo.getText())) != null)
+                {
+                    Livro livro = livroDao.read(Integer.parseInt(jMyNumberFieldCodigo.getText()));
+                    jTextFieldIsbn.setText(livro.getIsbn());
+                    jTextFieldAno.setText(String.valueOf(livro.getAno()));
+                    jTextFieldCategoria.setText(livro.getCategoria().getNome());
+                    jTextFieldTitulo.setText(livro.getTitulo());
+                    jTextFieldAutor.setText(livro.getAutor().getNomeCompleto());
+                }
+                else
+                {
+                    jTextFieldIsbn.setText("");
+                    jTextFieldAno.setText("");
+                    jTextFieldCategoria.setText("");
+                    jTextFieldTitulo.setText("");
+                    jTextFieldAutor.setText("");
+                }
+            } catch (DataBaseException ex)
+            {
+                Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        else
+        {
+            jTextFieldIsbn.setText("");
+            jTextFieldAno.setText("");
+            jTextFieldCategoria.setText("");
+            jTextFieldTitulo.setText("");
+            jTextFieldAutor.setText("");
+        }
+
     }//GEN-LAST:event_jMyNumberFieldCodigoFocusLost
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonFecharActionPerformed

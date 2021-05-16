@@ -12,6 +12,8 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaCadastroClientes.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/UsuarioDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/LivrosTableModel.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaDefinicoes.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/DefinicoesDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/ClienteDao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaEmprestimo.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/AutorDaoPostgreSQL.java
@@ -30,10 +32,12 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Livro.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaCadastroLivros.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/easylibmanager/SistemaEasyLibManager.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/DefinicoesDao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Categoria.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/UsuarioDao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Editora.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Autor.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Definicoes.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Main.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/LivroDao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/ClienteFiltro.java

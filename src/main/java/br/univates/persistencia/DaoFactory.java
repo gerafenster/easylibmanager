@@ -39,5 +39,10 @@ public class DaoFactory
     {
         return new EmprestimoDaoPostgreSQL();
     }
+    
+    public static DefinicoesDao newDefinicoesDao() throws DataBaseException
+    {
+        return new DefinicoesDaoPostgreSQL();
+    }
 
 }
