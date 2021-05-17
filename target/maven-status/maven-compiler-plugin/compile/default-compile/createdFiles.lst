@@ -3,6 +3,7 @@ br/univates/apresentacao/TelaCadastroLivros.class
 br/univates/apresentacao/TelaMenuPrincipal$3.class
 br/univates/negocio/Autor.class
 br/univates/apresentacao/TelaLogin$2.class
+br/univates/apresentacao/TelaConsultaLivro.class
 br/univates/apresentacao/TelaCadastroUsuarios$2.class
 br/univates/persistencia/EmprestimoDaoPostgreSQL.class
 br/univates/persistencia/DefinicoesDaoPostgreSQL.class
@@ -14,6 +15,7 @@ br/univates/apresentacao/TelaEmprestimo$3.class
 br/univates/apresentacao/TelaCadastroClientes$3.class
 br/univates/apresentacao/TelaLogin.class
 br/univates/persistencia/ClienteDao.class
+br/univates/apresentacao/TelaConsultaLivro$1.class
 br/univates/persistencia/UsuarioDaoPostgreSQL.class
 br/univates/apresentacao/TelaDevolução$3.class
 br/univates/persistencia/ClienteFiltro.class
