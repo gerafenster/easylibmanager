@@ -135,5 +135,11 @@ public class EditoraDaoPostgreSQL implements EditoraDao
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Editora readFilter(Editora editora) throws DataBaseException
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

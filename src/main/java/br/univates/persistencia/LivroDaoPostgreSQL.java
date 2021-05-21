@@ -160,4 +160,72 @@ public class LivroDaoPostgreSQL implements LivroDao
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public ArrayList<Livro> readFilter(Livro livro) throws DataBaseException
+    {
+        String sql = "SELECT * FROM livro WHERE 1=1";
+
+        if (livro.getId() != 0)
+        {
+            sql += " AND id = " + livro.getId() + "";
+        }
+        if (livro.getIsbn() != null)
+        {
+            sql += " AND isbn LIKE '%" + livro.getIsbn() + "%'";
+        }
+        if (livro.getAno() != 0)
+        {
+            sql += " AND ano = " + livro.getAno() + "";
+        }
+        if (livro.getTitulo() != null)
+        {
+            sql += " AND titulo ILIKE '%" + livro.getTitulo() + "%'";
+        }
+        if (livro.isDisponivel() != null)
+        {
+            sql += " AND is_disponivel = " + livro.isDisponivel()+ "";
+        }
+        if (livro.getAutor() != null)
+        {
+            sql += " AND autor_id = " + livro.getAutor().getId() + "";
+        }
+        if (livro.getEditora() != null)
+        {
+            sql += " AND editora_id = " + livro.getEditora().getId() + "";
+        }
+        if (livro.getCategoria() != null)
+        {
+            sql += " AND categoria_id = " + livro.getCategoria().getId() + "";
+        }
+
+        ArrayList<Livro> livros = new ArrayList<>();
+        Livro aux = null;
+        try
+        {
+            ResultSet rs = connection.runQuerySQL(sql);
+            if (rs.isBeforeFirst())
+            {
+                while (rs.next())
+                {
+                    int id = rs.getInt("id");
+                    String isbn = rs.getString("isbn");
+                    int ano = rs.getInt("ano");
+                    String titulo = rs.getString("titulo");
+                    Boolean isDisponivel = rs.getBoolean("is_disponivel");
+                    int autorId = rs.getInt("autor_id");
+                    int editoraId = rs.getInt("editora_id");
+                    int categoriaId = rs.getInt("categoria_id");
+                    autor = autorDao.read(autorId);
+                    editora = editoraDao.read(editoraId);
+                    categoria = categoriaDao.read(categoriaId);
+                    aux = new Livro(id, isbn, ano, titulo, isDisponivel, autor, editora, categoria);
+                    livros.add(aux);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DataBaseException(ex.getMessage());
+        }
+        return livros;
+    }
 }

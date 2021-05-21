@@ -330,7 +330,7 @@ public class TelaEmprestimo extends javax.swing.JFrame
         Cliente cliente = null;
         Livro livro = null;
 
-        if (jMyCpfField.getText().contains("") || jMyNumberFieldCodigo.getText().equals(""))
+        if (jMyCpfField.getText().contains(" ") || jMyNumberFieldCodigo.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios!");
         }
@@ -347,7 +347,6 @@ public class TelaEmprestimo extends javax.swing.JFrame
                 livroDao.edit(livro);
             } catch (DataBaseException ex)
             {
-                System.out.println("aqui");
                 Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
             }
 

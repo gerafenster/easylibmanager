@@ -7,12 +7,16 @@ public class Livro
     String isbn;
     int ano;
     String titulo;
-    boolean Disponivel;
+    Boolean Disponivel;
     Autor autor;
     Editora editora;
     Categoria categoria;
 
-    public Livro(int id, String isbn, int ano, String titulo, boolean Disponivel, Autor autor, Editora editora, Categoria categoria)
+    public Livro()
+    {
+    }
+
+    public Livro(int id, String isbn, int ano, String titulo, Boolean Disponivel, Autor autor, Editora editora, Categoria categoria)
     {
         this.id = id;
         this.isbn = isbn;
@@ -24,7 +28,7 @@ public class Livro
         this.categoria = categoria;
     }
 
-    public Livro(String isbn, int ano, String titulo, boolean Disponivel, Autor autor, Editora editora, Categoria categoria)
+    public Livro(String isbn, int ano, String titulo, Boolean Disponivel, Autor autor, Editora editora, Categoria categoria)
     {
         this.isbn = isbn;
         this.ano = ano;
@@ -55,16 +59,19 @@ public class Livro
         return titulo;
     }
 
-    public boolean isDisponivel()
+    public Boolean isDisponivel()
     {
         return Disponivel;
     }
-    
+
     public String isDisponivelString()
     {
-        if(Disponivel){
+        if (Disponivel)
+        {
             return "Sim";
-        }else{
+        }
+        else
+        {
             return "Não";
         }
     }
@@ -77,6 +84,11 @@ public class Livro
     public Editora getEditora()
     {
         return editora;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 
     public Categoria getCategoria()

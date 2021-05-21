@@ -6,6 +6,7 @@
 package br.univates.persistencia;
 
 import br.univates.negocio.Autor;
+import br.univates.negocio.Livro;
 import br.univates.system32.db.DataBaseConnectionManager;
 import br.univates.system32.db.DataBaseException;
 import br.univates.system32.db.Filter;
@@ -19,20 +20,21 @@ import java.util.ArrayList;
  */
 public class AutorDaoPostgreSQL implements AutorDao
 {
+
     private DataBaseConnectionManager connection;
-    
-    public AutorDaoPostgreSQL () throws DataBaseException
+
+    public AutorDaoPostgreSQL() throws DataBaseException
     {
         this.connection = new DataBaseConnectionManager(
                 DataBaseConnectionManager.POSTGRESQL, "easylib_manager", "postgres", "123");
     }
-    
+
     @Override
     public void create(Autor autor) throws DataBaseException
     {
         if (autor != null)
         {
-            String sql = "INSERT INTO autor (nome_completo) VALUES ('"+autor.getNomeCompleto()+"')";
+            String sql = "INSERT INTO autor (nome_completo) VALUES ('" + autor.getNomeCompleto() + "')";
 
             connection.runSQL(sql);
         }
@@ -47,7 +49,7 @@ public class AutorDaoPostgreSQL implements AutorDao
     {
         if (autor != null)
         {
-            String sql = "UPDATE autor SET nome_completo = '"+autor.getNomeCompleto()+"' WHERE id = '"+autor.getId()+"'";
+            String sql = "UPDATE autor SET nome_completo = '" + autor.getNomeCompleto() + "' WHERE id = '" + autor.getId() + "'";
 
             connection.runSQL(sql);
         }
@@ -62,7 +64,7 @@ public class AutorDaoPostgreSQL implements AutorDao
     {
         if (autor != null)
         {
-            String sql = "DELETE FROM autor WHERE id = '"+autor.getId()+"'";
+            String sql = "DELETE FROM autor WHERE id = '" + autor.getId() + "'";
 
             connection.runSQL(sql);
         }
@@ -75,7 +77,7 @@ public class AutorDaoPostgreSQL implements AutorDao
     @Override
     public Autor read(int id) throws DataBaseException
     {
-        String sql = "SELECT * FROM autor WHERE id = "+id+"";
+        String sql = "SELECT * FROM autor WHERE id = " + id + "";
         Autor autor = null;
 
         try
@@ -99,7 +101,7 @@ public class AutorDaoPostgreSQL implements AutorDao
     @Override
     public Autor readName(String nomeCompleto) throws DataBaseException
     {
-        String sql = "SELECT * FROM autor WHERE nome_completo = '"+nomeCompleto+"'";
+        String sql = "SELECT * FROM autor WHERE nome_completo = '" + nomeCompleto + "'";
         Autor autor = null;
         try
         {
@@ -151,5 +153,35 @@ public class AutorDaoPostgreSQL implements AutorDao
     public ArrayList<Autor> read(Filter filter) throws DataBaseException
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Autor> readFilter(Autor autor) throws DataBaseException
+    {
+        String sql = "SELECT * FROM autor WHERE 1=1";
+        if (autor.getNomeCompleto() != null)
+        {
+            sql += " AND nome_completo ILIKE '%" + autor.getNomeCompleto() + "%'";
+        }
+        ArrayList<Autor> autores = new ArrayList<>();
+        Autor aux = null;
+        try
+        {
+            ResultSet rs = connection.runQuerySQL(sql);
+            if (rs.isBeforeFirst())
+            {
+                while (rs.next())
+                {
+                    int id = rs.getInt("id");
+                    String NomeCompleto = rs.getString("nome_completo");
+                    aux = new Autor(id, NomeCompleto);
+                    autores.add(aux);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DataBaseException(ex.getMessage());
+        }
+        return autores;
     }
 }

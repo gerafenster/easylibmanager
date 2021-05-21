@@ -9,6 +9,7 @@ public interface EditoraDao extends IDAO<Editora>
 {
     
     public Editora readName(String name) throws DataBaseException;
+    public Editora readFilter(Editora editora) throws DataBaseException;
 //    
 //    
 //    
