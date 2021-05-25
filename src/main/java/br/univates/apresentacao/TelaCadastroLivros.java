@@ -394,7 +394,7 @@ public class TelaCadastroLivros extends javax.swing.JFrame
 
         if (jTextFieldTitulo.getText().equals("") || jTextFieldEditora.getText().equals("")
                 || jTextFieldAutor.getText().equals("") || jFormattedTextFieldAno.getText().equals("")
-                || jMyNumberFieldIsbn.getText().equals(""))
+                || jMyNumberFieldIsbn.getText().equals("") || jComboBoxCategoria.getSelectedIndex() == 0)
         {
             JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios!");
         }

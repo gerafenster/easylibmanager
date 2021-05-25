@@ -27,6 +27,7 @@ public class TelaDefinicoes extends javax.swing.JFrame
     public TelaDefinicoes()
     {
         initComponents();
+        this.setLocationRelativeTo(null);
         Definicoes definicoes = null;
         try
         {
@@ -80,7 +81,7 @@ public class TelaDefinicoes extends javax.swing.JFrame
         jLabel16.setForeground(new java.awt.Color(204, 0, 0));
         jLabel16.setText("*");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel12.setFont(new java.awt.Font("Hack", 0, 36)); // NOI18N
         jLabel12.setText("Definições");

@@ -1,13 +1,9 @@
 package br.univates.easylibmanager;
 
 import br.univates.apresentacao.TelaLogin;
-import br.univates.apresentacao.TelaMenuPrincipal;
-import br.univates.authenticator.Authenticator;
-import br.univates.authenticator.GenericUser;
 import br.univates.system32.app.Application;
 import br.univates.system32.app.ApplicationProcess;
 import br.univates.system32.app.FatalSystemException;
-import java.util.ArrayList;
 
 public class SistemaEasyLibManager extends Application
 {

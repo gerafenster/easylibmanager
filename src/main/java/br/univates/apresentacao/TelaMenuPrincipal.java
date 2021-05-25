@@ -1,6 +1,18 @@
 package br.univates.apresentacao;
 
 import br.univates.easylibmanager.SistemaEasyLibManager;
+import br.univates.system32.db.DataBaseException;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class TelaMenuPrincipal extends javax.swing.JFrame
 {
@@ -25,37 +37,48 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuMovimentacoes = new javax.swing.JMenu();
+        jMenuItemEmprestimo = new javax.swing.JMenuItem();
+        jMenuItemDevolucao = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemCadastrarCliente = new javax.swing.JMenuItem();
         jMenuItemCadastrarLivro = new javax.swing.JMenuItem();
         jMenuItemCadastraUsuario = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        jMenuConsultas = new javax.swing.JMenu();
+        jMenuItemLivros = new javax.swing.JMenuItem();
+        jMenuEditar = new javax.swing.JMenu();
+        jMenuItemDefinicoes = new javax.swing.JMenuItem();
+        jMenuRelatorioLivrosCategoria = new javax.swing.JMenu();
+        jMenuItemListagemClientes = new javax.swing.JMenuItem();
+        jMenuItemListagemAutores = new javax.swing.JMenuItem();
+        jMenuItemRelatorioLivrosCategoria = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Pesquisar Cliente");
+        jMenuMovimentacoes.setText("Movimentações");
 
-        jButton2.setText("Registrar Empréstimo");
+        jMenuItemEmprestimo.setText("Empréstimo");
+        jMenuItemEmprestimo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemEmprestimoActionPerformed(evt);
+            }
+        });
+        jMenuMovimentacoes.add(jMenuItemEmprestimo);
 
-        jButton3.setText("Registrar Devolução");
+        jMenuItemDevolucao.setText("Devolução");
+        jMenuItemDevolucao.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemDevolucaoActionPerformed(evt);
+            }
+        });
+        jMenuMovimentacoes.add(jMenuItemDevolucao);
 
-        jButton4.setText("Pesquisar Livro");
-
-        jMenu1.setText("Arquivo");
-
-        jMenuItem4.setText("Sair");
-        jMenu1.add(jMenuItem4);
-
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuMovimentacoes);
 
         jMenu3.setText("Cadastros");
 
@@ -92,13 +115,67 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Definições");
-        jMenu4.add(jMenuItem8);
+        jMenuConsultas.setText("Consultas");
 
-        jMenuBar1.add(jMenu4);
+        jMenuItemLivros.setText("Livros");
+        jMenuItemLivros.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemLivrosActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemLivros);
 
-        jMenu5.setText("Relatórios");
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(jMenuConsultas);
+
+        jMenuEditar.setText("Editar");
+
+        jMenuItemDefinicoes.setText("Definições");
+        jMenuItemDefinicoes.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemDefinicoesActionPerformed(evt);
+            }
+        });
+        jMenuEditar.add(jMenuItemDefinicoes);
+
+        jMenuBar1.add(jMenuEditar);
+
+        jMenuRelatorioLivrosCategoria.setText("Impressões");
+
+        jMenuItemListagemClientes.setText("Listagem de Clientes");
+        jMenuItemListagemClientes.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemListagemClientesActionPerformed(evt);
+            }
+        });
+        jMenuRelatorioLivrosCategoria.add(jMenuItemListagemClientes);
+
+        jMenuItemListagemAutores.setText("Listagem de Autores");
+        jMenuItemListagemAutores.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemListagemAutoresActionPerformed(evt);
+            }
+        });
+        jMenuRelatorioLivrosCategoria.add(jMenuItemListagemAutores);
+
+        jMenuItemRelatorioLivrosCategoria.setText("Relatório de Livros por Categoria");
+        jMenuItemRelatorioLivrosCategoria.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemRelatorioLivrosCategoriaActionPerformed(evt);
+            }
+        });
+        jMenuRelatorioLivrosCategoria.add(jMenuItemRelatorioLivrosCategoria);
+
+        jMenuBar1.add(jMenuRelatorioLivrosCategoria);
 
         setJMenuBar(jMenuBar1);
 
@@ -106,27 +183,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(406, Short.MAX_VALUE))
+            .addGap(0, 651, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(213, Short.MAX_VALUE))
+            .addGap(0, 499, Short.MAX_VALUE)
         );
 
         pack();
@@ -135,7 +196,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
     private void jMenuItemCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastraUsuarioActionPerformed
     {//GEN-HEADEREND:event_jMenuItemCadastraUsuarioActionPerformed
         new TelaCadastroUsuarios().setVisible(true);
-
     }//GEN-LAST:event_jMenuItemCadastraUsuarioActionPerformed
 
     private void jMenuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCadastrarClienteActionPerformed
@@ -147,6 +207,81 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jMenuItemCadastrarLivroActionPerformed
         new TelaCadastroLivros().setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarLivroActionPerformed
+
+    private void jMenuItemListagemClientesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemListagemClientesActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemListagemClientesActionPerformed
+        Connection connection = null;
+        try
+        {
+            // Obtém a conexão com o banco de dados
+            connection = SistemaEasyLibManager.getInstance().getDataBaseManager().getConnection();
+
+            // Compilar o relatório do formato XML gerando um objeto JasperReport
+            JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("/br/univates/resources/reports/ListagemClientes.jrxml"));
+
+            // Cria uma lista de parâmetros para o relatório
+            Map param = new HashMap();
+
+            // Gera o relatório efetivamente
+            JasperPrint print = JasperFillManager.fillReport(report, param, connection);
+
+            // Exibir o relatório
+            JasperViewer.viewReport(print, false);
+        } catch (DataBaseException | JRException ex)
+        {
+            Logger.getLogger(TelaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItemListagemClientesActionPerformed
+
+    private void jMenuItemEmprestimoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemEmprestimoActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemEmprestimoActionPerformed
+        new TelaEmprestimo().setVisible(true);
+    }//GEN-LAST:event_jMenuItemEmprestimoActionPerformed
+
+    private void jMenuItemDevolucaoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemDevolucaoActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemDevolucaoActionPerformed
+        new TelaDevolução().setVisible(true);
+    }//GEN-LAST:event_jMenuItemDevolucaoActionPerformed
+
+    private void jMenuItemDefinicoesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemDefinicoesActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemDefinicoesActionPerformed
+        new TelaDefinicoes().setVisible(true);
+    }//GEN-LAST:event_jMenuItemDefinicoesActionPerformed
+
+    private void jMenuItemLivrosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemLivrosActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemLivrosActionPerformed
+        new TelaConsultaLivro().setVisible(true);
+    }//GEN-LAST:event_jMenuItemLivrosActionPerformed
+
+    private void jMenuItemRelatorioLivrosCategoriaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemRelatorioLivrosCategoriaActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemRelatorioLivrosCategoriaActionPerformed
+        new TelaRelatorioLivrosCategoria().setVisible(true);
+    }//GEN-LAST:event_jMenuItemRelatorioLivrosCategoriaActionPerformed
+
+    private void jMenuItemListagemAutoresActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemListagemAutoresActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemListagemAutoresActionPerformed
+        Connection connection = null;
+        try
+        {
+            // Obtém a conexão com o banco de dados
+            connection = SistemaEasyLibManager.getInstance().getDataBaseManager().getConnection();
+
+            // Compilar o relatório do formato XML gerando um objeto JasperReport
+            JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("/br/univates/resources/reports/ListagemAutores.jrxml"));
+
+            // Cria uma lista de parâmetros para o relatório
+            Map param = new HashMap();
+
+            // Gera o relatório efetivamente
+            JasperPrint print = JasperFillManager.fillReport(report, param, connection);
+
+            // Exibir o relatório
+            JasperViewer.viewReport(print, false);
+        } catch (DataBaseException | JRException ex)
+        {
+            Logger.getLogger(TelaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItemListagemAutoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,19 +347,21 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenu jMenuConsultas;
+    private javax.swing.JMenu jMenuEditar;
     private javax.swing.JMenuItem jMenuItemCadastraUsuario;
     private javax.swing.JMenuItem jMenuItemCadastrarCliente;
     private javax.swing.JMenuItem jMenuItemCadastrarLivro;
+    private javax.swing.JMenuItem jMenuItemDefinicoes;
+    private javax.swing.JMenuItem jMenuItemDevolucao;
+    private javax.swing.JMenuItem jMenuItemEmprestimo;
+    private javax.swing.JMenuItem jMenuItemListagemAutores;
+    private javax.swing.JMenuItem jMenuItemListagemClientes;
+    private javax.swing.JMenuItem jMenuItemLivros;
+    private javax.swing.JMenuItem jMenuItemRelatorioLivrosCategoria;
+    private javax.swing.JMenu jMenuMovimentacoes;
+    private javax.swing.JMenu jMenuRelatorioLivrosCategoria;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,6 +33,7 @@ public class TelaEmprestimo extends javax.swing.JFrame
     public TelaEmprestimo()
     {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -72,7 +73,7 @@ public class TelaEmprestimo extends javax.swing.JFrame
         jButtonRegistrar = new javax.swing.JButton();
         jButtonFechar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel12.setFont(new java.awt.Font("Hack", 0, 36)); // NOI18N
         jLabel12.setText("Registro de Empréstimo");

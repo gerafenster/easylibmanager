@@ -30,6 +30,7 @@ public class TelaDevolução extends javax.swing.JFrame
     public TelaDevolução()
     {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -89,7 +90,7 @@ public class TelaDevolução extends javax.swing.JFrame
         jLabel13.setForeground(new java.awt.Color(204, 0, 0));
         jLabel13.setText("*");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel12.setFont(new java.awt.Font("Hack", 0, 36)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListagemEmprestimosAtivos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="352681da-0104-4231-95c1-bb5156538c79">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="EasyLib Manager"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[select * from autor order by nome_completo]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="autor"/>
+	</field>
+	<field name="nome_completo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome_completo"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome_completo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="autor"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="320" height="30" uuid="fe2a2a0e-9d42-424b-b9c0-f534d0e22713"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EASYLIB MANAGER]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="217" height="30" uuid="c3d3eb11-ba87-4173-85f2-dea0cb89409d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTAGEM DE AUTORES]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="30" uuid="df398c9c-2469-46bd-b958-871966be22ee">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1f3fa1e1-1b2c-45f6-a669-294184ad9722"/>
+				</reportElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="400" height="30" uuid="0aea0dad-7835-41af-b556-5905cf81d711">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d6ac6442-4c1c-4029-97fc-146d51787554"/>
+				</reportElement>
+				<text><![CDATA[Nome Completo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="0" y="0" width="80" height="20" uuid="ccff9e5c-fc96-4bae-a964-c16c3887d8ae">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1f3fa1e1-1b2c-45f6-a669-294184ad9722"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="400" height="19" uuid="214fa4f1-4957-429a-8a77-574ba7a72662">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d6ac6442-4c1c-4029-97fc-146d51787554"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nome_completo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
