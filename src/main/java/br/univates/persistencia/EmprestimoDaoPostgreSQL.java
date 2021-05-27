@@ -117,4 +117,36 @@ public class EmprestimoDaoPostgreSQL implements EmprestimoDao
         return emprestimos;
     }
 
+    @Override
+    public Emprestimo readLivro(Livro livro) throws DataBaseException
+    {
+        String sql = "SELECT * FROM livro WHERE livro_id = " + livro.getId() + "";
+        Emprestimo emprestimo = null;
+        try
+        {
+            ResultSet rs = connection.runQuerySQL(sql);
+            if (rs.isBeforeFirst())
+            {
+                while (rs.next())
+                {
+                    int id = rs.getInt("id");
+                    LocalDate dataEmprestimo = LocalDate.parse(rs.getString("data_emprestimo"));
+                    LocalDate dataDevolucao;
+                    dataDevolucao = LocalDate.parse(rs.getString("data_devolucao"));
+                    clienteDao = DaoFactory.newClienteDao();
+                    Cliente cliente = clienteDao.read(rs.getInt("cliente_id"));
+                    livroDao = DaoFactory.newLivroDao();
+                    livro = livroDao.read(rs.getInt("livro_id"));
+                    emprestimo = new Emprestimo(id, dataEmprestimo, dataDevolucao, cliente, livro);
+                }
+            }
+
+        } catch (SQLException ex)
+        {
+            throw new DataBaseException(ex.getMessage());
+        }
+        return emprestimo;
+
+    }
+
 }

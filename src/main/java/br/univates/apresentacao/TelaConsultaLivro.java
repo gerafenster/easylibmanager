@@ -113,7 +113,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame
         jFormattedTextFieldAno = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         jMyNumberFieldCodigo = new br.univates.system32.components.JMyNumberField();
-        jButton1 = new javax.swing.JButton();
+        jButtonLimparFiltros = new javax.swing.JButton();
         jButtonFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -193,12 +193,12 @@ public class TelaConsultaLivro extends javax.swing.JFrame
 
         jLabel10.setText("Código:");
 
-        jButton1.setText("Limpar filtros");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
+        jButtonLimparFiltros.setText("Limpar filtros");
+        jButtonLimparFiltros.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton1ActionPerformed(evt);
+                jButtonLimparFiltrosActionPerformed(evt);
             }
         });
 
@@ -252,7 +252,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(jButtonLimparFiltros)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -294,7 +294,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonFiltrar)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonLimparFiltros))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -444,8 +444,8 @@ public class TelaConsultaLivro extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
+    private void jButtonLimparFiltrosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonLimparFiltrosActionPerformed
+    {//GEN-HEADEREND:event_jButtonLimparFiltrosActionPerformed
 
         jTextFieldTitulo.setText("");
         jTextFieldEditora.setText("");
@@ -457,7 +457,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame
         jComboBoxCategoria.setSelectedIndex(0);
         
         jButtonFiltrarActionPerformed(evt);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonLimparFiltrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -510,9 +510,9 @@ public class TelaConsultaLivro extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonFiltrar;
+    private javax.swing.JButton jButtonLimparFiltros;
     private javax.swing.JComboBox<Categoria> jComboBoxCategoria;
     private javax.swing.JComboBox<String> jComboBoxDisponivel;
     private javax.swing.JFormattedTextField jFormattedTextFieldAno;

@@ -19,7 +19,6 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/AutorDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/EmprestimoDao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/easylibmanager/Main.java
-/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/LivroFiltro.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/EditoraDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/CategoriaDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/AutorDao.java
@@ -43,4 +42,3 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Definicoes.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Main.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/LivroDao.java
-/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/ClienteFiltro.java

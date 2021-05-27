@@ -58,7 +58,6 @@ br/univates/apresentacao/TelaLogin.class
 br/univates/persistencia/ClienteDao.class
 br/univates/apresentacao/TelaConsultaLivro$1.class
 br/univates/persistencia/UsuarioDaoPostgreSQL.class
-br/univates/persistencia/ClienteFiltro.class
 br/univates/apresentacao/TelaCadastroLivros$3.class
 br/univates/persistencia/AutorDao.class
 br/univates/persistencia/EmprestimoDao.class
@@ -72,7 +71,6 @@ br/univates/persistencia/DaoFactory.class
 br/univates/persistencia/EmprestimoFiltro.class
 br/univates/persistencia/DefinicoesDao.class
 br/univates/apresentacao/TelaDefinicoes$1.class
-br/univates/persistencia/LivroFiltro.class
 br/univates/apresentacao/TelaCadastroClientes$2.class
 br/univates/negocio/Categoria.class
 br/univates/apresentacao/TelaCadastroLivros$5.class

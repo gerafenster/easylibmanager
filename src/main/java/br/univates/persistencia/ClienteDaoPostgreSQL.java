@@ -146,4 +146,40 @@ public class ClienteDaoPostgreSQL implements ClienteDao
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public ArrayList<Cliente> readFilter(Cliente cliente) throws DataBaseException
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Cliente readCpf(String cpf) throws DataBaseException
+    {
+        String sql = "SELECT * FROM cliente WHERE cpf = '" + cpf + "'";
+        Cliente cliente = null;
+        try
+        {
+            ResultSet rs = connection.runQuerySQL(sql);
+
+            if (rs.isBeforeFirst())
+            {
+                while (rs.next())
+                {
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    String sobrenome = rs.getString("sobrenome");
+                    String email = rs.getString("email");
+                    String telefone = rs.getString("telefone");
+                    String celular = rs.getString("celular");
+                    cliente = new Cliente(id, nome, sobrenome, cpf, email, telefone, celular);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DataBaseException(ex.getMessage());
+        }
+        return cliente;
+
+    }
 }
