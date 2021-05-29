@@ -86,7 +86,7 @@ public class ClienteDaoPostgreSQL implements ClienteDao
                     String email = rs.getString("email");
                     String telefone = rs.getString("telefone");
                     String celular = rs.getString("celular");
-                    cliente = new Cliente(nome, sobrenome, cpf, email, telefone, celular);
+                    cliente = new Cliente(id, nome, sobrenome, cpf, email, telefone, celular);
                 }
             }
         } catch (SQLException ex)

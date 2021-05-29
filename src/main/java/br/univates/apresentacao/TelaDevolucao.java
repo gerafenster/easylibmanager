@@ -5,29 +5,33 @@
  */
 package br.univates.apresentacao;
 
+import br.univates.negocio.Definicoes;
 import br.univates.negocio.Emprestimo;
 import br.univates.negocio.Livro;
 import br.univates.persistencia.DaoFactory;
+import br.univates.persistencia.DefinicoesDao;
 import br.univates.persistencia.EmprestimoDao;
-import br.univates.persistencia.EmprestimoFiltro;
 import br.univates.persistencia.LivroDao;
 import br.univates.system32.db.DataBaseException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author cristian
  */
-public class TelaDevolução extends javax.swing.JFrame
+public class TelaDevolucao extends javax.swing.JFrame
 {
 
     /**
      * Creates new form TelaDevolução
      */
-    public TelaDevolução()
+    public TelaDevolucao()
     {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -118,13 +122,6 @@ public class TelaDevolução extends javax.swing.JFrame
         jLabel17.setText("Autor(es):");
 
         jTextFieldAno.setEditable(false);
-        jTextFieldAno.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jTextFieldAnoActionPerformed(evt);
-            }
-        });
 
         jTextFieldTitulo.setEditable(false);
 
@@ -252,6 +249,13 @@ public class TelaDevolução extends javax.swing.JFrame
         );
 
         jButtonRegistrar.setText("Registrar");
+        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButtonRegistrarActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -395,39 +399,108 @@ public class TelaDevolução extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldAnoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFieldAnoActionPerformed
-    {//GEN-HEADEREND:event_jTextFieldAnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnoActionPerformed
-
     private void jMyNumberFieldCodigoFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jMyNumberFieldCodigoFocusLost
     {//GEN-HEADEREND:event_jMyNumberFieldCodigoFocusLost
-        try
+        if (jMyNumberFieldCodigo.getText().isEmpty())
         {
-            LivroDao livroDao = DaoFactory.newLivroDao();
-            Livro livro = livroDao.read(Integer.parseInt(jMyNumberFieldCodigo.getText()));
-            jTextFieldIsbn.setText(livro.getIsbn());
-            jTextFieldAno.setText(String.valueOf(livro.getAno()));
-            jTextFieldCategoria.setText(livro.getCategoria().getNome());
-            jTextFieldTitulo.setText(livro.getTitulo());
-            jTextFieldAutor.setText(livro.getAutor().getNomeCompleto());
-            EmprestimoFiltro filtroLivro = new EmprestimoFiltro(livro);
-            EmprestimoDao emprestimoDao = DaoFactory.newEmprestimoDao();
-            Emprestimo emprestimo = emprestimoDao.read(filtroLivro).get(0);
-            jTextFieldNomeCompleto.setText(emprestimo.getCliente().getNome()+" "+emprestimo.getCliente().getSobrenome());
-            jTextFieldDataEmprestimo.setText(emprestimo.getDataEmprestimo().toString());
-            int diasEmprestado = Period.between(emprestimo.getDataEmprestimo(), LocalDate.now()).getDays();
-            jTextFieldDiasEmprestado.setText(String.valueOf(diasEmprestado));
-        } catch (DataBaseException ex)
+            limparCampos();
+        }
+        else
         {
-            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+            Definicoes definicoes = null;
+            Livro livro = null;
+            Emprestimo emprestimo = null;
+            try
+            {
+                DefinicoesDao definicoesDao = DaoFactory.newDefinicoesDao();
+                definicoes = definicoesDao.read(0);
+                LivroDao livroDao = DaoFactory.newLivroDao();
+                livro = livroDao.read(Integer.parseInt(jMyNumberFieldCodigo.getText()));
+                if (livro != null)
+                {
+                    EmprestimoDao emprestimoDao = DaoFactory.newEmprestimoDao();
+                    emprestimo = emprestimoDao.readLivroEmprestado(livro);
+                }
+            } catch (DataBaseException ex)
+            {
+                Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (livro == null)
+            {
+                JOptionPane.showMessageDialog(null, "Livro não encontrado no sistema!");
+                limparCampos();
+            }
+            if (livro != null && emprestimo == null)
+            {
+                limparCampos();
+                JOptionPane.showMessageDialog(null, "Livro não está emprestado!");
+            }
+            if (livro != null && emprestimo != null)
+            {
+//          Dados do livro
+                jTextFieldIsbn.setText(livro.getIsbn());
+                jTextFieldAno.setText(String.valueOf(livro.getAno()));
+                jTextFieldCategoria.setText(livro.getCategoria().getNome());
+                jTextFieldTitulo.setText(livro.getTitulo());
+                jTextFieldAutor.setText(livro.getAutor().getNomeCompleto());
+                jTextFieldNomeCompleto.setText(emprestimo.getCliente().getNome() + " " + emprestimo.getCliente().getSobrenome());
+//          Dados do empréstimo
+                jTextFieldDataEmprestimo.setText(emprestimo.getDataEmprestimo().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString());
+                int diasEmprestado = Period.between(emprestimo.getDataEmprestimo(), LocalDate.now()).getDays();
+                jTextFieldDiasEmprestado.setText(String.valueOf(diasEmprestado));
+                int diasAtraso = 0;
+                if (diasEmprestado > definicoes.getPrazoEmprestimo())
+                {
+                    diasAtraso = diasEmprestado - definicoes.getPrazoEmprestimo();
+                }
+                jTextFieldDiasAtraso.setText(String.valueOf(diasAtraso));
+                BigDecimal valorMulta = definicoes.getValorMulta().multiply(new BigDecimal(diasAtraso));
+                jTextFieldValorMulta.setText(String.valueOf(valorMulta));
+            }
         }
     }//GEN-LAST:event_jMyNumberFieldCodigoFocusLost
+
+    private void limparCampos()
+    {
+        jMyNumberFieldCodigo.setText("");
+        jTextFieldIsbn.setText("");
+        jTextFieldAno.setText("");
+        jTextFieldCategoria.setText("");
+        jTextFieldTitulo.setText("");
+        jTextFieldAutor.setText("");
+        jTextFieldNomeCompleto.setText("");
+        jTextFieldDataEmprestimo.setText("");
+        jTextFieldDiasEmprestado.setText("");
+        jTextFieldDiasAtraso.setText("");
+        jTextFieldValorMulta.setText("");
+    }
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonFecharActionPerformed
     {//GEN-HEADEREND:event_jButtonFecharActionPerformed
         dispose();
     }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonRegistrarActionPerformed
+    {//GEN-HEADEREND:event_jButtonRegistrarActionPerformed
+        Livro livro = null;
+        Emprestimo emprestimo = null;
+        try
+        {
+            LivroDao livroDao = DaoFactory.newLivroDao();
+            livro = livroDao.read(Integer.parseInt(jMyNumberFieldCodigo.getText()));
+            livro.setDisponivel(true);
+            livroDao.edit(livro);
+            EmprestimoDao emprestimoDao = DaoFactory.newEmprestimoDao();
+            emprestimo = emprestimoDao.readLivroEmprestado(livro);
+            emprestimo.setDataDevolucao(LocalDate.now());
+            emprestimoDao.edit(emprestimo);
+            JOptionPane.showMessageDialog(null, "Devolução registrada com sucesso!");
+            limparCampos();
+        } catch (DataBaseException ex)
+        {
+            Logger.getLogger(TelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -451,17 +524,18 @@ public class TelaDevolução extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(TelaDevolução.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDevolucao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(TelaDevolução.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDevolucao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(TelaDevolução.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDevolucao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(TelaDevolução.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDevolucao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -469,7 +543,7 @@ public class TelaDevolução extends javax.swing.JFrame
         {
             public void run()
             {
-                new TelaDevolução().setVisible(true);
+                new TelaDevolucao().setVisible(true);
             }
         });
     }

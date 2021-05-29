@@ -478,9 +478,27 @@ public class TelaCadastroLivros extends javax.swing.JFrame
             livroDao.delete(livro);
         } catch (DataBaseException ex)
         {
-            System.out.println(ex.getMessage());
+//            System.out.println(ex.getMessage());
+            String[] options = new String[]
+            {
+                "Sim", "Cancelar"
+            };
+            int response = JOptionPane.showOptionDialog(null, "Este livro consta no registro"
+                    + " de empréstimos e por isso não pode ser excluído do banco de dados."
+                    + "\n\nGostaria de torná-lo indisponível?", "Aviso",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, options, options[1]);
+            if (response == 0)
+            {
+                try {
+                    livro.setDisponivel(false);
+                    LivroDao livroDao = DaoFactory.newLivroDao();
+                    livroDao.edit(livro);
+                } catch (DataBaseException ex1) {
+                    Logger.getLogger(TelaCadastroLivros.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+            }
         }
-
         atualizarTabela();
     }//GEN-LAST:event_ExcluirActionPerformed
 

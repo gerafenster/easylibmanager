@@ -399,11 +399,13 @@ public class TelaCadastroClientes extends javax.swing.JFrame
         {
             ClienteDao clienteDao = DaoFactory.newClienteDao();
             clienteDao.delete(cliente);
+            atualizarTabela();
         } catch (DataBaseException ex)
         {
-            System.out.println(ex.getMessage());
+//            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Este cliente consta no registro"
+                    + " de empréstimos e por isso não pode ser excluído do banco de dados.");
         }
-        atualizarTabela();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonNovoActionPerformed

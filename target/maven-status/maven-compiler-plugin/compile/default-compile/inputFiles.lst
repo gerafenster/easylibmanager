@@ -1,13 +1,13 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Cliente.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaLogin.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Usuario.java
-/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaDevolução.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaMenuPrincipal.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/LivroDaoPostgreSQL.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/EditoraDao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/CategoriaDao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/Validacao2.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Emprestimo.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaDevolucao.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/Md5.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaCadastroClientes.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/UsuarioDaoPostgreSQL.java

@@ -7,23 +7,23 @@ public class Emprestimo
     
     int id;
     LocalDate dataEmprestimo;
-    LocalDate dataDevolução;
+    LocalDate dataDevolucao;
     Cliente cliente;
     Livro livro;
 
-    public Emprestimo(int id, LocalDate dataEmprestimo, LocalDate dataDevolução, Cliente cliente, Livro livro)
+    public Emprestimo(int id, LocalDate dataEmprestimo, LocalDate dataDevolucao, Cliente cliente, Livro livro)
     {
         this.id = id;
         this.dataEmprestimo = dataEmprestimo;
-        this.dataDevolução = dataDevolução;
+        this.dataDevolucao = dataDevolucao;
         this.cliente = cliente;
         this.livro = livro;
     }
 
-    public Emprestimo(LocalDate dataEmprestimo, LocalDate dataDevolução, Cliente cliente, Livro livro)
+    public Emprestimo(LocalDate dataEmprestimo, LocalDate dataDevolucao, Cliente cliente, Livro livro)
     {
         this.dataEmprestimo = dataEmprestimo;
-        this.dataDevolução = dataDevolução;
+        this.dataDevolucao = dataDevolucao;
         this.cliente = cliente;
         this.livro = livro;
     }
@@ -48,14 +48,14 @@ public class Emprestimo
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public LocalDate getDataDevolução()
+    public LocalDate getDataDevolucao()
     {
-        return dataDevolução;
+        return dataDevolucao;
     }
 
-    public void setDataDevolução(LocalDate dataDevolução)
+    public void setDataDevolucao(LocalDate dataDevolucao)
     {
-        this.dataDevolução = dataDevolução;
+        this.dataDevolucao = dataDevolucao;
     }
 
     public Cliente getCliente()

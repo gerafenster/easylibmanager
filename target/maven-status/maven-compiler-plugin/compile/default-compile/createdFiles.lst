@@ -7,7 +7,6 @@ br/univates/apresentacao/TelaRelatorioLivrosCategoria.class
 br/univates/persistencia/EmprestimoDaoPostgreSQL.class
 br/univates/easylibmanager/Main.class
 br/univates/apresentacao/TelaCadastroClientes$3.class
-br/univates/apresentacao/TelaDevolução$3.class
 br/univates/apresentacao/TelaCadastroClientes$6.class
 br/univates/apresentacao/TelaDefinicoes$2.class
 br/univates/persistencia/EditoraDaoPostgreSQL.class
@@ -16,6 +15,7 @@ br/univates/apresentacao/TelaLogin$3.class
 br/univates/persistencia/Validacao2.class
 br/univates/apresentacao/TelaLogin$1.class
 br/univates/apresentacao/TelaCadastroUsuarios.class
+br/univates/apresentacao/TelaDevolucao$3.class
 br/univates/apresentacao/TelaCadastroUsuarios$1.class
 br/univates/apresentacao/TelaMenuPrincipal$6.class
 br/univates/apresentacao/TelaCadastroUsuarios$4.class
@@ -23,15 +23,16 @@ br/univates/apresentacao/TelaCadastroLivros$1.class
 br/univates/negocio/Emprestimo.class
 br/univates/apresentacao/TelaMenuPrincipal$10.class
 br/univates/apresentacao/TelaCadastroLivros$4.class
+br/univates/apresentacao/TelaDevolucao.class
 br/univates/negocio/Editora.class
 br/univates/apresentacao/TelaCadastroClientes.class
 br/univates/apresentacao/TelaEmprestimo$1.class
 br/univates/apresentacao/TelaCadastroClientes$1.class
 br/univates/persistencia/AutorDaoPostgreSQL.class
+br/univates/apresentacao/TelaDevolucao$4.class
 br/univates/apresentacao/TelaLogin$4.class
 br/univates/persistencia/LivroDaoPostgreSQL.class
 br/univates/apresentacao/TelaDefinicoes.class
-br/univates/apresentacao/TelaDevolução$1.class
 br/univates/persistencia/LivroDao.class
 br/univates/apresentacao/TelaMenuPrincipal$5.class
 br/univates/apresentacao/TelaCadastroUsuarios$3.class
@@ -44,10 +45,10 @@ br/univates/apresentacao/TelaCadastroLivros$2.class
 br/univates/apresentacao/LivrosTableModel.class
 br/univates/apresentacao/TelaEmprestimo.class
 br/univates/apresentacao/TelaEmprestimo$2.class
-br/univates/apresentacao/TelaDevolução$2.class
 br/univates/apresentacao/TelaRelatorioLivrosCategoria$3.class
 br/univates/apresentacao/TelaLogin$2.class
 br/univates/apresentacao/TelaConsultaLivro.class
+br/univates/apresentacao/TelaDevolucao$2.class
 br/univates/apresentacao/TelaCadastroUsuarios$2.class
 br/univates/persistencia/DefinicoesDaoPostgreSQL.class
 br/univates/easylibmanager/SistemaEasyLibManager$1.class
@@ -77,11 +78,11 @@ br/univates/apresentacao/TelaCadastroLivros$5.class
 br/univates/apresentacao/TelaRelatorioLivrosCategoria$1.class
 br/univates/negocio/Main.class
 br/univates/apresentacao/TelaEmprestimo$4.class
-br/univates/apresentacao/TelaDevolução$4.class
 br/univates/apresentacao/TelaMenuPrincipal$8.class
 br/univates/apresentacao/TelaDefinicoes$4.class
 br/univates/negocio/Cliente.class
 br/univates/apresentacao/TelaConsultaLivro$3.class
+br/univates/apresentacao/TelaDevolucao$1.class
 br/univates/persistencia/UsuarioDao.class
 br/univates/apresentacao/TelaMenuPrincipal$11.class
 br/univates/apresentacao/TelaDefinicoes$3.class
@@ -90,7 +91,6 @@ br/univates/apresentacao/TelaEmprestimo$5.class
 br/univates/negocio/Livro.class
 br/univates/apresentacao/RelatorioLivrosCategoria.class
 br/univates/apresentacao/TelaMenuPrincipal$7.class
-br/univates/apresentacao/TelaDevolução.class
 br/univates/apresentacao/TelaCadastroLivros$6.class
 br/univates/apresentacao/TelaCadastroClientes$4.class
 br/univates/apresentacao/TelaConsultaLivro$2.class

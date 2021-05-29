@@ -8,7 +8,7 @@ import br.univates.system32.db.IDAO;
 public interface EmprestimoDao extends IDAO<Emprestimo>
 {
         
-    public Emprestimo readLivro(Livro livro) throws DataBaseException;
+    public Emprestimo readLivroEmprestado(Livro livro) throws DataBaseException;
 //    
 //    
 //    

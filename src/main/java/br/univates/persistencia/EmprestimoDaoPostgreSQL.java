@@ -47,9 +47,20 @@ public class EmprestimoDaoPostgreSQL implements EmprestimoDao
     }
 
     @Override
-    public void edit(Emprestimo entity) throws DataBaseException
+    public void edit(Emprestimo emprestimo) throws DataBaseException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (emprestimo != null)
+        {
+            String sql = "UPDATE emprestimo SET data_emprestimo = '" + emprestimo.getDataEmprestimo().toString() + "', "
+                    + "data_devolucao = '" + emprestimo.getDataDevolucao().toString() + "', "
+                    + "cliente_id = " + emprestimo.getCliente().getId() + ", livro_id = " + emprestimo.getLivro().getId() + " "
+                    + "WHERE id = " + emprestimo.getId();
+            connection.runSQL(sql);
+        }
+        else
+        {
+            throw new DataBaseException("Empréstimo nulo");
+        }
     }
 
     @Override
@@ -118,27 +129,23 @@ public class EmprestimoDaoPostgreSQL implements EmprestimoDao
     }
 
     @Override
-    public Emprestimo readLivro(Livro livro) throws DataBaseException
+    public Emprestimo readLivroEmprestado(Livro livro) throws DataBaseException
     {
-        String sql = "SELECT * FROM livro WHERE livro_id = " + livro.getId() + "";
+        String sql = "SELECT * FROM emprestimo WHERE data_devolucao IS NULL AND livro_id = " + livro.getId();
         Emprestimo emprestimo = null;
         try
         {
             ResultSet rs = connection.runQuerySQL(sql);
             if (rs.isBeforeFirst())
             {
-                while (rs.next())
-                {
-                    int id = rs.getInt("id");
-                    LocalDate dataEmprestimo = LocalDate.parse(rs.getString("data_emprestimo"));
-                    LocalDate dataDevolucao;
-                    dataDevolucao = LocalDate.parse(rs.getString("data_devolucao"));
-                    clienteDao = DaoFactory.newClienteDao();
-                    Cliente cliente = clienteDao.read(rs.getInt("cliente_id"));
-                    livroDao = DaoFactory.newLivroDao();
-                    livro = livroDao.read(rs.getInt("livro_id"));
-                    emprestimo = new Emprestimo(id, dataEmprestimo, dataDevolucao, cliente, livro);
-                }
+                rs.next();
+                int id = rs.getInt("id");
+                LocalDate dataEmprestimo = LocalDate.parse(rs.getString("data_emprestimo"));
+                clienteDao = DaoFactory.newClienteDao();
+                Cliente cliente = clienteDao.read(rs.getInt("cliente_id"));
+                livroDao = DaoFactory.newLivroDao();
+                livro = livroDao.read(rs.getInt("livro_id"));
+                emprestimo = new Emprestimo(id, dataEmprestimo, null, cliente, livro);
             }
 
         } catch (SQLException ex)
@@ -146,7 +153,6 @@ public class EmprestimoDaoPostgreSQL implements EmprestimoDao
             throw new DataBaseException(ex.getMessage());
         }
         return emprestimo;
-
     }
 
 }

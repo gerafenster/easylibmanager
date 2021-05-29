@@ -240,7 +240,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
 
     private void jMenuItemDevolucaoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemDevolucaoActionPerformed
     {//GEN-HEADEREND:event_jMenuItemDevolucaoActionPerformed
-        new TelaDevolução().setVisible(true);
+        new TelaDevolucao().setVisible(true);
     }//GEN-LAST:event_jMenuItemDevolucaoActionPerformed
 
     private void jMenuItemDefinicoesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemDefinicoesActionPerformed
