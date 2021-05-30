@@ -116,12 +116,20 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemListagemAutoresActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemRelatorioLivrosCategoria">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemRelatorioLivros">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Livros por Categoria"/>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Livros"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemRelatorioLivrosCategoriaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemRelatorioLivrosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemRelatorioEmprestimos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Empr&#xe9;stimos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemRelatorioEmprestimosActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

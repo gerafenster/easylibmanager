@@ -52,7 +52,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         jMenuRelatorioLivrosCategoria = new javax.swing.JMenu();
         jMenuItemListagemClientes = new javax.swing.JMenuItem();
         jMenuItemListagemAutores = new javax.swing.JMenuItem();
-        jMenuItemRelatorioLivrosCategoria = new javax.swing.JMenuItem();
+        jMenuItemRelatorioLivros = new javax.swing.JMenuItem();
+        jMenuItemRelatorioEmprestimos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,15 +166,25 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         });
         jMenuRelatorioLivrosCategoria.add(jMenuItemListagemAutores);
 
-        jMenuItemRelatorioLivrosCategoria.setText("Relatório de Livros por Categoria");
-        jMenuItemRelatorioLivrosCategoria.addActionListener(new java.awt.event.ActionListener()
+        jMenuItemRelatorioLivros.setText("Relatório de Livros");
+        jMenuItemRelatorioLivros.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jMenuItemRelatorioLivrosCategoriaActionPerformed(evt);
+                jMenuItemRelatorioLivrosActionPerformed(evt);
             }
         });
-        jMenuRelatorioLivrosCategoria.add(jMenuItemRelatorioLivrosCategoria);
+        jMenuRelatorioLivrosCategoria.add(jMenuItemRelatorioLivros);
+
+        jMenuItemRelatorioEmprestimos.setText("Relatório de Empréstimos");
+        jMenuItemRelatorioEmprestimos.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemRelatorioEmprestimosActionPerformed(evt);
+            }
+        });
+        jMenuRelatorioLivrosCategoria.add(jMenuItemRelatorioEmprestimos);
 
         jMenuBar1.add(jMenuRelatorioLivrosCategoria);
 
@@ -253,10 +264,10 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         new TelaConsultaLivro().setVisible(true);
     }//GEN-LAST:event_jMenuItemLivrosActionPerformed
 
-    private void jMenuItemRelatorioLivrosCategoriaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemRelatorioLivrosCategoriaActionPerformed
-    {//GEN-HEADEREND:event_jMenuItemRelatorioLivrosCategoriaActionPerformed
-        new TelaRelatorioLivrosCategoria().setVisible(true);
-    }//GEN-LAST:event_jMenuItemRelatorioLivrosCategoriaActionPerformed
+    private void jMenuItemRelatorioLivrosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemRelatorioLivrosActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemRelatorioLivrosActionPerformed
+        new TelaRelatorioLivros().setVisible(true);
+    }//GEN-LAST:event_jMenuItemRelatorioLivrosActionPerformed
 
     private void jMenuItemListagemAutoresActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemListagemAutoresActionPerformed
     {//GEN-HEADEREND:event_jMenuItemListagemAutoresActionPerformed
@@ -282,6 +293,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
             Logger.getLogger(TelaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItemListagemAutoresActionPerformed
+
+    private void jMenuItemRelatorioEmprestimosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemRelatorioEmprestimosActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemRelatorioEmprestimosActionPerformed
+        new TelaRelatorioEmprestimos().setVisible(true);
+    }//GEN-LAST:event_jMenuItemRelatorioEmprestimosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,7 +376,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemListagemAutores;
     private javax.swing.JMenuItem jMenuItemListagemClientes;
     private javax.swing.JMenuItem jMenuItemLivros;
-    private javax.swing.JMenuItem jMenuItemRelatorioLivrosCategoria;
+    private javax.swing.JMenuItem jMenuItemRelatorioEmprestimos;
+    private javax.swing.JMenuItem jMenuItemRelatorioLivros;
     private javax.swing.JMenu jMenuMovimentacoes;
     private javax.swing.JMenu jMenuRelatorioLivrosCategoria;
     // End of variables declaration//GEN-END:variables
