@@ -163,7 +163,10 @@ public class LivroDaoPostgreSQL implements LivroDao
     @Override
     public ArrayList<Livro> readFilter(Livro livro) throws DataBaseException
     {
-        String sql = "SELECT * FROM livro WHERE 1=1";
+        String sql = "SELECT * FROM livro "
+                + "INNER JOIN autor ON livro.autor_id = autor.id "
+                + "INNER JOIN editora ON livro.editora_id = editora.id "
+                + "WHERE 1=1";
 
         if (livro.getId() != 0)
         {
@@ -183,15 +186,15 @@ public class LivroDaoPostgreSQL implements LivroDao
         }
         if (livro.isDisponivel() != null)
         {
-            sql += " AND is_disponivel = " + livro.isDisponivel()+ "";
+            sql += " AND is_disponivel = " + livro.isDisponivel() + "";
         }
         if (livro.getAutor() != null)
         {
-            sql += " AND autor_id = " + livro.getAutor().getId() + "";
+            sql += " AND autor.nome_completo ILIKE '%" + livro.getAutor().getNomeCompleto() + "%'";
         }
         if (livro.getEditora() != null)
         {
-            sql += " AND editora_id = " + livro.getEditora().getId() + "";
+            sql += " AND editora.nome ILIKE '%" + livro.getEditora().getNome() + "%'";
         }
         if (livro.getCategoria() != null)
         {

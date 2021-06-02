@@ -364,31 +364,12 @@ public class TelaConsultaLivro extends javax.swing.JFrame
         }
         if (!jTextFieldEditora.getText().isEmpty())
         {
-            Editora editora = null;
-            EditoraDao editoraDao;
-            try
-            {
-                editoraDao = DaoFactory.newEditoraDao();
-                editora = editoraDao.readName(jTextFieldEditora.getText());
-
-            } catch (DataBaseException ex)
-            {
-                Logger.getLogger(TelaConsultaLivro.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Editora editora = new Editora(jTextFieldEditora.getText());
             livro.setEditora(editora);
         }
         if (!jTextFieldAutor.getText().isEmpty())
         {
-            Autor autor = null;
-            AutorDao autorDao;
-            try
-            {
-                autorDao = DaoFactory.newAutorDao();
-                autor = autorDao.readName(jTextFieldAutor.getText());
-            } catch (DataBaseException ex)
-            {
-                Logger.getLogger(TelaConsultaLivro.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Autor autor = new Autor(jTextFieldAutor.getText());
             livro.setAutor(autor);
         }
         if (!jMyNumberFieldCodigo.getText().isEmpty())
