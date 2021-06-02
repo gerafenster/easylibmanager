@@ -170,7 +170,7 @@ public class LivroDaoPostgreSQL implements LivroDao
 
         if (livro.getId() != 0)
         {
-            sql += " AND id = " + livro.getId() + "";
+            sql += " AND livro.id = " + livro.getId() + "";
         }
         if (livro.getIsbn() != null)
         {
