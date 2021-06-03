@@ -37,6 +37,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuMovimentacoes = new javax.swing.JMenu();
         jMenuItemEmprestimo = new javax.swing.JMenuItem();
@@ -56,6 +57,12 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         jMenuItemRelatorioEmprestimos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/cristian/Downloads/biblioteca.jpg")); // NOI18N
+        jLabel1.setText("jLabel1");
+        jLabel1.setMaximumSize(new java.awt.Dimension(5902, 3909));
+        jLabel1.setMinimumSize(new java.awt.Dimension(5902, 3909));
+        jLabel1.setPreferredSize(new java.awt.Dimension(5902, 3909));
 
         jMenuMovimentacoes.setText("Movimentações");
 
@@ -194,11 +201,13 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1017, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -363,6 +372,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConsultas;

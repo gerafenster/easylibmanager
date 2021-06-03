@@ -5,6 +5,7 @@
  */
 package br.univates.apresentacao;
 
+import br.univates.easylibmanager.SistemaEasyLibManager;
 import br.univates.negocio.Autor;
 import br.univates.negocio.Categoria;
 import br.univates.negocio.Editora;
@@ -436,7 +437,7 @@ public class TelaConsultaLivro extends javax.swing.JFrame
         jFormattedTextFieldAno.setText("");
         jComboBoxDisponivel.setSelectedIndex(0);
         jComboBoxCategoria.setSelectedIndex(0);
-        
+
         jButtonFiltrarActionPerformed(evt);
     }//GEN-LAST:event_jButtonLimparFiltrosActionPerformed
 

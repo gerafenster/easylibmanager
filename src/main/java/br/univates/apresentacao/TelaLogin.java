@@ -1,5 +1,6 @@
 package br.univates.apresentacao;
 
+import br.univates.authenticator.GenericUser;
 import br.univates.easylibmanager.SistemaEasyLibManager;
 import br.univates.persistencia.DaoFactory;
 import br.univates.persistencia.Md5;
@@ -153,6 +154,21 @@ public class TelaLogin extends javax.swing.JFrame
             Usuario usuarioAutenticar = new Usuario(login, senha);
             if (dao.readLoginPassword(usuarioAutenticar) != null)
             {
+                GenericUser loggedUser = new GenericUser()
+                {
+                    @Override
+                    public String getLogin()
+                    {
+                        return login;
+                    }
+
+                    @Override
+                    public String getPassword()
+                    {
+                        return senha;
+                    }
+                };
+                SistemaEasyLibManager.getInstance().setLoggedUser(loggedUser);
                 TelaMenuPrincipal telaMenu = new TelaMenuPrincipal();
                 telaMenu.setVisible(true);
                 dispose();
