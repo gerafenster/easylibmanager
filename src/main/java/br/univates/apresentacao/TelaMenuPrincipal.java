@@ -1,6 +1,9 @@
 package br.univates.apresentacao;
 
 import br.univates.easylibmanager.SistemaEasyLibManager;
+import br.univates.negocio.Definicoes;
+import br.univates.persistencia.DaoFactory;
+import br.univates.persistencia.DefinicoesDao;
 import br.univates.system32.db.DataBaseException;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -54,12 +57,14 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         jMenuRelatorioLivrosCategoria = new javax.swing.JMenu();
         jMenuItemListagemClientes = new javax.swing.JMenuItem();
         jMenuItemListagemAutores = new javax.swing.JMenuItem();
+        jMenuItemListagemLivrosEmprestados = new javax.swing.JMenuItem();
+        jMenuItemMultasAberto = new javax.swing.JMenuItem();
         jMenuItemRelatorioLivros = new javax.swing.JMenuItem();
         jMenuItemRelatorioEmprestimos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelBackground.setIcon(new javax.swing.ImageIcon("/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/resources/images/nova.jpeg")); // NOI18N
+        jLabelBackground.setIcon(new javax.swing.ImageIcon("/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/resources/images/background.jpeg")); // NOI18N
         jLabelBackground.setText("jLabel2");
 
         jMenuMovimentacoes.setText("Movimentações");
@@ -180,6 +185,26 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
             }
         });
         jMenuRelatorioLivrosCategoria.add(jMenuItemListagemAutores);
+
+        jMenuItemListagemLivrosEmprestados.setText("Listagem de Livros Emprestados (Não Devolvidos)");
+        jMenuItemListagemLivrosEmprestados.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemListagemLivrosEmprestadosActionPerformed(evt);
+            }
+        });
+        jMenuRelatorioLivrosCategoria.add(jMenuItemListagemLivrosEmprestados);
+
+        jMenuItemMultasAberto.setText("Listagem de Multas em Aberto");
+        jMenuItemMultasAberto.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemMultasAbertoActionPerformed(evt);
+            }
+        });
+        jMenuRelatorioLivrosCategoria.add(jMenuItemMultasAberto);
 
         jMenuItemRelatorioLivros.setText("Relatório de Livros");
         jMenuItemRelatorioLivros.addActionListener(new java.awt.event.ActionListener()
@@ -323,6 +348,67 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         new TelaConsultaClientes().setVisible(true);
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
 
+    private void jMenuItemListagemLivrosEmprestadosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemListagemLivrosEmprestadosActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemListagemLivrosEmprestadosActionPerformed
+        Connection connection = null;
+        try
+        {
+            // Obtém a conexão com o banco de dados
+            connection = SistemaEasyLibManager.getInstance().getDataBaseManager().getConnection();
+
+            // Compilar o relatório do formato XML gerando um objeto JasperReport
+            JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("/br/univates/resources/reports/ListagemLivrosEmprestados.jrxml"));
+
+            // Cria uma lista de parâmetros para o relatório
+            Map param = new HashMap();
+
+            // Gera o relatório efetivamente
+            JasperPrint print = JasperFillManager.fillReport(report, param, connection);
+
+            // Exibir o relatório
+            JasperViewer.viewReport(print, false);
+        } catch (DataBaseException | JRException ex)
+        {
+            Logger.getLogger(TelaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItemListagemLivrosEmprestadosActionPerformed
+
+    private void jMenuItemMultasAbertoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemMultasAbertoActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemMultasAbertoActionPerformed
+        Connection connection = null;
+        try
+        {
+            // Obtém a conexão com o banco de dados
+            connection = SistemaEasyLibManager.getInstance().getDataBaseManager().getConnection();
+
+            // Compilar o relatório do formato XML gerando um objeto JasperReport
+            JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("/br/univates/resources/reports/ListagemMultasAberto.jrxml"));
+
+            // Cria uma lista de parâmetros para o relatório
+            HashMap map = new HashMap();
+            Definicoes definicoes = null;
+            try
+            {
+                DefinicoesDao definicoesDao = DaoFactory.newDefinicoesDao();
+                definicoes = definicoesDao.read(0);
+            } catch (DataBaseException ex)
+            {
+                Logger.getLogger(TelaDefinicoes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            map.put("prazoEmprestimo", definicoes.getPrazoEmprestimo());
+            map.put("valorMulta", definicoes.getValorMulta().doubleValue());
+
+            // Gera o relatório efetivamente
+            JasperPrint print = JasperFillManager.fillReport(report, map, connection);
+
+            // Exibir o relatório
+            JasperViewer.viewReport(print, false);
+        } catch (DataBaseException | JRException ex)
+        {
+            Logger.getLogger(TelaMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItemMultasAbertoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -401,7 +487,9 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemEmprestimo;
     private javax.swing.JMenuItem jMenuItemListagemAutores;
     private javax.swing.JMenuItem jMenuItemListagemClientes;
+    private javax.swing.JMenuItem jMenuItemListagemLivrosEmprestados;
     private javax.swing.JMenuItem jMenuItemLivros;
+    private javax.swing.JMenuItem jMenuItemMultasAberto;
     private javax.swing.JMenuItem jMenuItemRelatorioEmprestimos;
     private javax.swing.JMenuItem jMenuItemRelatorioLivros;
     private javax.swing.JMenu jMenuMovimentacoes;

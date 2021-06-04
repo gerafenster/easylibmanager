@@ -124,6 +124,22 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemListagemAutoresActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemListagemLivrosEmprestados">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listagem de Livros Emprestados (N&#xe3;o Devolvidos)"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemListagemLivrosEmprestadosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemMultasAberto">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listagem de Multas em Aberto"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemMultasAbertoActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemRelatorioLivros">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Relat&#xf3;rio de Livros"/>
@@ -187,7 +203,7 @@
     <Component class="javax.swing.JLabel" name="jLabelBackground">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/resources/images/nova.jpeg"/>
+          <Image iconType="2" name="/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/resources/images/background.jpeg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
