@@ -13,10 +13,12 @@ br/univates/apresentacao/TelaDefinicoes$2.class
 br/univates/persistencia/EditoraDaoPostgreSQL.class
 br/univates/apresentacao/TelaMenuPrincipal$9.class
 br/univates/apresentacao/TelaLogin$3.class
+br/univates/apresentacao/TelaConsultaClientes.class
 br/univates/persistencia/Validacao2.class
 br/univates/apresentacao/TelaLogin$1.class
 br/univates/apresentacao/TelaCadastroUsuarios.class
 br/univates/apresentacao/TelaDevolucao$3.class
+br/univates/apresentacao/TelaMenuPrincipal$13.class
 br/univates/apresentacao/TelaCadastroUsuarios$1.class
 br/univates/apresentacao/TelaMenuPrincipal$6.class
 br/univates/apresentacao/TelaCadastroUsuarios$4.class
@@ -50,6 +52,7 @@ br/univates/apresentacao/LivrosTableModel.class
 br/univates/apresentacao/TelaEmprestimo.class
 br/univates/apresentacao/TelaEmprestimo$2.class
 br/univates/apresentacao/TelaRelatorioLivros.class
+br/univates/apresentacao/TelaConsultaClientes$1.class
 br/univates/apresentacao/TelaLogin$2.class
 br/univates/apresentacao/TelaConsultaLivro.class
 br/univates/apresentacao/TelaDevolucao$2.class
@@ -74,6 +77,7 @@ br/univates/negocio/Definicoes.class
 br/univates/apresentacao/TelaCadastroClientes$5.class
 br/univates/persistencia/CategoriaDao.class
 br/univates/apresentacao/TelaConsultaLivro$4.class
+br/univates/apresentacao/TelaConsultaClientes$4.class
 br/univates/persistencia/DaoFactory.class
 br/univates/persistencia/EmprestimoFiltro.class
 br/univates/apresentacao/TelaRelatorioEmprestimos$3.class
@@ -93,10 +97,12 @@ br/univates/apresentacao/TelaDefinicoes$4.class
 br/univates/negocio/Cliente.class
 br/univates/apresentacao/TelaConsultaLivro$3.class
 br/univates/apresentacao/TelaDevolucao$1.class
+br/univates/apresentacao/TelaConsultaClientes$3.class
 br/univates/persistencia/UsuarioDao.class
 br/univates/apresentacao/TelaMenuPrincipal$11.class
 br/univates/apresentacao/TelaDefinicoes$3.class
 br/univates/apresentacao/TelaEmprestimo$5.class
+br/univates/apresentacao/TelaConsultaClientes$2.class
 br/univates/negocio/Livro.class
 br/univates/apresentacao/TelaMenuPrincipal$7.class
 br/univates/apresentacao/TelaRelatorioEmprestimos$1.class

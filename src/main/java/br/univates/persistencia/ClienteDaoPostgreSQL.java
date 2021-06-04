@@ -150,7 +150,61 @@ public class ClienteDaoPostgreSQL implements ClienteDao
     @Override
     public ArrayList<Cliente> readFilter(Cliente cliente) throws DataBaseException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM cliente WHERE 1=1";
+        if (cliente.getId() != 0)
+        {
+            sql += " AND id = " + cliente.getId() + "";
+        }
+        if (cliente.getNome() != null)
+        {
+            sql += " AND nome ILIKE '%" + cliente.getNome() + "%'";
+        }
+        if (cliente.getSobrenome() != null)
+        {
+            sql += " AND sobrenome ILIKE '%" + cliente.getSobrenome() + "%'";
+        }
+        if (cliente.getEmail() != null)
+        {
+            sql += " AND email ILIKE '%" + cliente.getEmail() + "%'";
+        }
+        if (cliente.getCpf() != null)
+        {
+            sql += " AND cpf LIKE '%" + cliente.getCpf() + "%'";
+        }
+        if (cliente.getTelefone() != null)
+        {
+            sql += " AND telefone LIKE '%" + cliente.getTelefone() + "%'";
+        }
+        if (cliente.getCelular() != null)
+        {
+            sql += " AND celular LIKE '%" + cliente.getCelular() + "%'";
+        }
+
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        Cliente aux = null;
+        try
+        {
+            ResultSet rs = connection.runQuerySQL(sql);
+            if (rs.isBeforeFirst())
+            {
+                while (rs.next())
+                {
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    String sobrenome = rs.getString("sobrenome");
+                    String cpf = rs.getString("cpf");
+                    String email = rs.getString("email");
+                    String telefone = rs.getString("telefone");
+                    String celular = rs.getString("celular");
+                    aux = new Cliente(id, nome, sobrenome, cpf, email, telefone, celular);
+                    clientes.add(aux);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            throw new DataBaseException(ex.getMessage());
+        }
+        return clientes;
     }
 
     @Override

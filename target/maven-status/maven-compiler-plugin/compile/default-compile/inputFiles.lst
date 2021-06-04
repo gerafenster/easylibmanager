@@ -30,6 +30,7 @@
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaCadastroUsuarios.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaConsultaLivro.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/persistencia/DaoFactory.java
+/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaConsultaClientes.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/negocio/Livro.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/apresentacao/TelaCadastroLivros.java
 /home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/easylibmanager/SistemaEasyLibManager.java

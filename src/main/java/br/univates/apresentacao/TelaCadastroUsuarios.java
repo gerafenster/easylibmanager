@@ -24,7 +24,6 @@ public class TelaCadastroUsuarios extends javax.swing.JFrame
     {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle(SistemaEasyLibManager.getInstance().getApplicationName());
     }
 
     /**

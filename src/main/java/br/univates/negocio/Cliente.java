@@ -32,6 +32,10 @@ public class Cliente
         this.celular = celular;
     }
 
+    public Cliente()
+    {
+    }
+
     public int getId()
     {
         return id;
@@ -70,6 +74,36 @@ public class Cliente
     public void setId(int id)
     {
         this.id = id;
+    }
+
+    public void setNome(String nome)
+    {
+        this.nome = nome;
+    }
+
+    public void setSobrenome(String sobrenome)
+    {
+        this.sobrenome = sobrenome;
+    }
+
+    public void setCpf(String cpf)
+    {
+        this.cpf = cpf;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    public void setTelefone(String telefone)
+    {
+        this.telefone = telefone;
+    }
+
+    public void setCelular(String celular)
+    {
+        this.celular = celular;
     }
 
 }

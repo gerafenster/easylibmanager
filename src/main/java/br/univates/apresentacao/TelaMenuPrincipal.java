@@ -48,6 +48,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         jMenuItemCadastraUsuario = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemLivros = new javax.swing.JMenuItem();
+        jMenuItemClientes = new javax.swing.JMenuItem();
         jMenuEditar = new javax.swing.JMenu();
         jMenuItemDefinicoes = new javax.swing.JMenuItem();
         jMenuRelatorioLivrosCategoria = new javax.swing.JMenu();
@@ -58,7 +59,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelBackground.setIcon(new javax.swing.ImageIcon("/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/resources/images/biblioteca.png")); // NOI18N
+        jLabelBackground.setIcon(new javax.swing.ImageIcon("/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/resources/images/nova.jpeg")); // NOI18N
         jLabelBackground.setText("jLabel2");
 
         jMenuMovimentacoes.setText("Movimentações");
@@ -132,6 +133,16 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         });
         jMenuConsultas.add(jMenuItemLivros);
 
+        jMenuItemClientes.setText("Clientes");
+        jMenuItemClientes.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jMenuItemClientesActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemClientes);
+
         jMenuBar1.add(jMenuConsultas);
 
         jMenuEditar.setText("Editar");
@@ -199,12 +210,14 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabelBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelBackground)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabelBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -305,6 +318,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         new TelaRelatorioEmprestimos().setVisible(true);
     }//GEN-LAST:event_jMenuItemRelatorioEmprestimosActionPerformed
 
+    private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemClientesActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemClientesActionPerformed
+        new TelaConsultaClientes().setVisible(true);
+    }//GEN-LAST:event_jMenuItemClientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -377,6 +395,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemCadastraUsuario;
     private javax.swing.JMenuItem jMenuItemCadastrarCliente;
     private javax.swing.JMenuItem jMenuItemCadastrarLivro;
+    private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemDefinicoes;
     private javax.swing.JMenuItem jMenuItemDevolucao;
     private javax.swing.JMenuItem jMenuItemEmprestimo;
