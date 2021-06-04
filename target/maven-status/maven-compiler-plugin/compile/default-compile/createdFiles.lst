@@ -55,6 +55,7 @@ br/univates/apresentacao/TelaConsultaLivro.class
 br/univates/apresentacao/TelaDevolucao$2.class
 br/univates/apresentacao/TelaCadastroUsuarios$2.class
 br/univates/apresentacao/TelaRelatorioLivros$1.class
+br/univates/apresentacao/TelaCadastroUsuarios$5.class
 br/univates/persistencia/DefinicoesDaoPostgreSQL.class
 br/univates/easylibmanager/SistemaEasyLibManager$1.class
 br/univates/persistencia/Md5.class
