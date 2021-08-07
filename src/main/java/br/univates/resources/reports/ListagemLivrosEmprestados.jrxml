@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListagemEmprestimosAtivos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="352681da-0104-4231-95c1-bb5156538c79">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="EasyLib Manager"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[select emprestimo.data_emprestimo, concat (livro.id, ' - ', livro.titulo, ' (', autor.nome_completo, ' ', livro.ano, ')'), concat (cliente.id, ' - ', cliente.nome, ' ', cliente.sobrenome) from emprestimo join livro on emprestimo.livro_id = livro.id join autor on livro.autor_id = autor.id join cliente on emprestimo.cliente_id = cliente.id where emprestimo.data_devolucao is null order by emprestimo.data_emprestimo]]>
+	</queryString>
+	<field name="data_emprestimo" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="data_emprestimo"/>
+		<property name="com.jaspersoft.studio.field.label" value="data_emprestimo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="emprestimo"/>
+	</field>
+	<field name="concat" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="concat"/>
+		<property name="com.jaspersoft.studio.field.label" value="concat"/>
+	</field>
+	<field name="COLUMN_3" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="concat"/>
+		<property name="com.jaspersoft.studio.field.label" value="concat"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="320" height="30" uuid="fe2a2a0e-9d42-424b-b9c0-f534d0e22713"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EASYLIB MANAGER]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="420" height="30" uuid="c3d3eb11-ba87-4173-85f2-dea0cb89409d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTAGEM DE LIVROS EMPRESTADOS (NÃO DEVOLVIDOS)]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="1c6fb130-5f51-4761-ae9c-8300de0d6039">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87a3ea80-cbcd-4052-891e-44fbf0047307"/>
+				</reportElement>
+				<text><![CDATA[Data Empréstimo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="240" height="30" uuid="7bb20d8f-5b14-45fa-a0e6-999e683ce702">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="25d784be-2b10-425c-924d-1edde84a1487"/>
+				</reportElement>
+				<text><![CDATA[Livro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="0" width="220" height="30" uuid="14b76683-83b6-41e8-a431-1bc0a77fa9f3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="83b254fb-adb3-4a74-b701-dee913fb59b8"/>
+				</reportElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="100" height="30" uuid="82e0d3ae-6ca2-4631-91c0-c2285ea648e5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87a3ea80-cbcd-4052-891e-44fbf0047307"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{data_emprestimo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="240" height="30" uuid="eb32838a-65fe-48b7-b21b-aed4f32b645a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="25d784be-2b10-425c-924d-1edde84a1487"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{concat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="220" height="30" uuid="29578eb3-94cb-4cd4-a623-4dadb7366560">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="83b254fb-adb3-4a74-b701-dee913fb59b8"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{COLUMN_3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

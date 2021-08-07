@@ -301,6 +301,7 @@ public class TelaDefinicoes extends javax.swing.JFrame
         {
             DefinicoesDao definicoesDao = DaoFactory.newDefinicoesDao();
             definicoesDao.edit(definicoes);
+            JOptionPane.showMessageDialog(null, "Definições salvas com sucesso!");
         } catch (DataBaseException ex)
         {
             Logger.getLogger(TelaDefinicoes.class.getName()).log(Level.SEVERE, null, ex);

@@ -34,13 +34,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
-        jLabelBackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuMovimentacoes = new javax.swing.JMenu();
         jMenuItemEmprestimo = new javax.swing.JMenuItem();
@@ -64,26 +62,19 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelBackground.setIcon(new javax.swing.ImageIcon("/home/cristian/NetBeansProjects/EasyLibManager/src/main/java/br/univates/resources/images/background.jpeg")); // NOI18N
-        jLabelBackground.setText("jLabel2");
-
         jMenuMovimentacoes.setText("Movimentações");
 
         jMenuItemEmprestimo.setText("Empréstimo");
-        jMenuItemEmprestimo.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemEmprestimoActionPerformed(evt);
             }
         });
         jMenuMovimentacoes.add(jMenuItemEmprestimo);
 
         jMenuItemDevolucao.setText("Devolução");
-        jMenuItemDevolucao.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemDevolucao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemDevolucaoActionPerformed(evt);
             }
         });
@@ -94,10 +85,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         jMenu3.setText("Cadastros");
 
         jMenuItemCadastrarCliente.setText("Cliente");
-        jMenuItemCadastrarCliente.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemCadastrarClienteActionPerformed(evt);
             }
         });
@@ -105,20 +94,16 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
 
         jMenuItemCadastrarLivro.setText("Livro");
         jMenuItemCadastrarLivro.setToolTipText("");
-        jMenuItemCadastrarLivro.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemCadastrarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemCadastrarLivroActionPerformed(evt);
             }
         });
         jMenu3.add(jMenuItemCadastrarLivro);
 
         jMenuItemCadastraUsuario.setText("Usuário");
-        jMenuItemCadastraUsuario.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemCadastraUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemCadastraUsuarioActionPerformed(evt);
             }
         });
@@ -129,20 +114,16 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         jMenuConsultas.setText("Consultas");
 
         jMenuItemLivros.setText("Livros");
-        jMenuItemLivros.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemLivrosActionPerformed(evt);
             }
         });
         jMenuConsultas.add(jMenuItemLivros);
 
         jMenuItemClientes.setText("Clientes");
-        jMenuItemClientes.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemClientesActionPerformed(evt);
             }
         });
@@ -153,10 +134,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         jMenuEditar.setText("Editar");
 
         jMenuItemDefinicoes.setText("Definições");
-        jMenuItemDefinicoes.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemDefinicoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemDefinicoesActionPerformed(evt);
             }
         });
@@ -167,60 +146,48 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         jMenuRelatorioLivrosCategoria.setText("Impressões");
 
         jMenuItemListagemClientes.setText("Listagem de Clientes");
-        jMenuItemListagemClientes.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemListagemClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemListagemClientesActionPerformed(evt);
             }
         });
         jMenuRelatorioLivrosCategoria.add(jMenuItemListagemClientes);
 
         jMenuItemListagemAutores.setText("Listagem de Autores");
-        jMenuItemListagemAutores.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemListagemAutores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemListagemAutoresActionPerformed(evt);
             }
         });
         jMenuRelatorioLivrosCategoria.add(jMenuItemListagemAutores);
 
         jMenuItemListagemLivrosEmprestados.setText("Listagem de Livros Emprestados (Não Devolvidos)");
-        jMenuItemListagemLivrosEmprestados.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemListagemLivrosEmprestados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemListagemLivrosEmprestadosActionPerformed(evt);
             }
         });
         jMenuRelatorioLivrosCategoria.add(jMenuItemListagemLivrosEmprestados);
 
         jMenuItemMultasAberto.setText("Listagem de Multas em Aberto");
-        jMenuItemMultasAberto.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemMultasAberto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemMultasAbertoActionPerformed(evt);
             }
         });
         jMenuRelatorioLivrosCategoria.add(jMenuItemMultasAberto);
 
         jMenuItemRelatorioLivros.setText("Relatório de Livros");
-        jMenuItemRelatorioLivros.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemRelatorioLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemRelatorioLivrosActionPerformed(evt);
             }
         });
         jMenuRelatorioLivrosCategoria.add(jMenuItemRelatorioLivros);
 
         jMenuItemRelatorioEmprestimos.setText("Relatório de Empréstimos");
-        jMenuItemRelatorioEmprestimos.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jMenuItemRelatorioEmprestimos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemRelatorioEmprestimosActionPerformed(evt);
             }
         });
@@ -234,15 +201,11 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabelBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 998, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabelBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         pack();
@@ -473,7 +436,6 @@ public class TelaMenuPrincipal extends javax.swing.JFrame
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JLabel jLabelBackground;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConsultas;
